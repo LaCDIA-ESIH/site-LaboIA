@@ -213,7 +213,7 @@ export const partnerListQuery = groq`
     website,
     tags,
     featured,
-    "logo": select(defined(logo.image) => { "url": logo.image.asset->url, "alt": logo.alt }, null)
+    "logo": select(defined(logo.image) => { "url": logo.image.asset->url, "alt": logo.alt, "width": logo.image.asset->metadata.dimensions.width, "height": logo.image.asset->metadata.dimensions.height }, null)
   }
 `;
 
@@ -249,7 +249,7 @@ export const siteSettingsQuery = groq`
     _id,
     name,
     shortName,
-    description,
+    "description": coalesce(description[$locale], descriptionIntl[$locale], select($locale == "fr" => string(description))),
     "tagline": coalesce(taglineIntl[$locale], tagline),
     "footerContactTitle": coalesce(footerContactTitleIntl[$locale], footerContactTitle),
     "footerContactText": coalesce(footerContactTextIntl[$locale], footerContactText),

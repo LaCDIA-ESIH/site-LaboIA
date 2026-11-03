@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import type { Locale } from "@/lib/i18n";
 import { isSanityConfigured, sanityFetch } from "@/lib/sanity/client";
 import {
@@ -49,9 +51,12 @@ const emptySolutionsPage: SolutionsPage = { _id: "solutionsPage-empty" };
 
 export async function getSiteSettings(locale: Locale): Promise<SiteSettings> {
   if (!isSanityConfigured) return emptySiteSettings;
-  return sanityFetch<SiteSettings | null>(siteSettingsQuery, { locale }, null).then(
-    (site) => site ?? emptySiteSettings,
-  );
+  const site = (await sanityFetch<SiteSettings | null>(siteSettingsQuery, { locale }, null)) ?? emptySiteSettings;
+  if (site.description) return site;
+  // Pas de description dans cette langue côté CMS : repli traduit (next-intl)
+  // plutôt que d'afficher le texte français sur /en.
+  const t = await getTranslations({ locale, namespace: "footer" });
+  return { ...site, description: t("descriptionFallback") };
 }
 
 export async function getNavigation(locale: Locale): Promise<Navigation> {

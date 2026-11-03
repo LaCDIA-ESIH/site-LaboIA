@@ -53,7 +53,7 @@ export default async function Footer({
                   alt={logoAlt}
                   width={32}
                   height={32}
-                  className="object-contain"
+                  className="h-full w-full object-contain"
                 />
               </div>
               <div>

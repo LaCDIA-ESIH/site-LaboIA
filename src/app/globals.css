@@ -2036,6 +2036,22 @@ body {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
+/* Petits écrans : les deux boutons s'empilent à pleine largeur au lieu de
+   dépasser du viewport. */
+@media (max-width: 480px) {
+  .collab-cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .btn-cta-primary,
+  .btn-cta-secondary {
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
 /* ============================================================
    PATTERN UTILITIES
    ============================================================ */
