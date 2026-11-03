@@ -66,6 +66,8 @@
   },
   "home": {
     "hero": {
+      "labLines": [[{"t": "La", "hi": true}, {"t": "boratoire"}], [{"t": "C", "hi": true}, {"t": "aribéen"}], [{"t": "des Sciences de "}, {"t": "D", "hi": true}, {"t": "onnées"}], [{"t": "et de l'"}, {"t": "I", "hi": true}, {"t": "ntelligence "}, {"t": "A", "hi": true}, {"t": "rtificielle"}]],
+      "labAria": "Laboratoire Caribéen des Sciences de Données et de l'Intelligence Artificielle",
       "badge": "IA · Recherche · Innovation",
       "titleLine1": "De la donnée",
       "titleLine2": "à la connaissance —",

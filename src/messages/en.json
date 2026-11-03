@@ -66,6 +66,8 @@
   },
   "home": {
     "hero": {
+      "labLines": [[{"t": "C", "hi": true}, {"t": "aribbean"}], [{"t": "La", "hi": true}, {"t": "boratory of"}], [{"t": "D", "hi": true}, {"t": "ata Science"}], [{"t": "and "}, {"t": "A", "hi": true}, {"t": "rtificial "}, {"t": "I", "hi": true}, {"t": "ntelligence"}]],
+      "labAria": "Caribbean Laboratory of Data Science and Artificial Intelligence",
       "badge": "AI · Research · Innovation",
       "titleLine1": "From data",
       "titleLine2": "to knowledge —",
