@@ -80,7 +80,7 @@ export default function Hero({
         className="relative hero-content"
         style={{
           padding: "clamp(2rem,4.5vw,3.75rem) clamp(2rem,6vw,6rem) clamp(6.5rem,11vw,8rem)",
-          maxWidth: "760px",
+          maxWidth: "47.5rem",
           zIndex: 10,
         }}
       >
@@ -234,7 +234,7 @@ export default function Hero({
             fontSize: "clamp(0.98rem, 1.4vw, 1.2rem)",
             color: "var(--labo-text-muted)",
             lineHeight: 1.75,
-            maxWidth: "600px",
+            maxWidth: "37.5rem",
             marginBottom: "3rem",
           }}
         >
@@ -265,7 +265,7 @@ export default function Hero({
         <div
           className="hero-bottom-band-inner"
           style={{
-            maxWidth: "1240px",
+            maxWidth: "77.5rem",
             margin: "0 auto",
             padding: "clamp(1.1rem,2.4vw,1.6rem) clamp(2rem,6vw,6rem)",
             display: "flex",
