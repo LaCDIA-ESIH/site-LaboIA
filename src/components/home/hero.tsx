@@ -40,7 +40,7 @@ export default function Hero({
       style={{
         minHeight: "100vh",
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-start",
         backgroundColor: "var(--labo-bg)",
       }}
     >
@@ -79,7 +79,7 @@ export default function Hero({
       <div
         className="relative hero-content"
         style={{
-          padding: "clamp(7rem,10vw,9rem) clamp(2rem,6vw,6rem) clamp(6.5rem,11vw,8rem)",
+          padding: "clamp(2rem,4.5vw,3.75rem) clamp(2rem,6vw,6rem) clamp(6.5rem,11vw,8rem)",
           maxWidth: "760px",
           zIndex: 10,
         }}
@@ -107,30 +107,30 @@ export default function Hero({
           </div>
         </div>
         <style>{`
-          .lab-name { display: flex; gap: 1rem; margin: 0 0 2.25rem; }
+          .lab-name { display: flex; gap: 1.35rem; margin: 0 0 2.75rem; }
           .lab-name-rule {
-            width: 2px; flex-shrink: 0; border-radius: 2px;
+            width: 4px; flex-shrink: 0; border-radius: 4px;
             background: linear-gradient(to bottom, var(--labo-accent-teal), var(--labo-accent-violet));
             transform-origin: top; animation: lab-rule 0.9s cubic-bezier(.2,.7,.2,1) both;
           }
           .lab-name-line {
-            font-family: var(--font-display); font-weight: 500;
-            font-size: clamp(1rem, 1.7vw, 1.4rem); line-height: 1.35;
-            letter-spacing: 0.01em; color: rgba(240,244,255,0.62);
+            font-family: var(--font-display); font-weight: 600;
+            font-size: clamp(1.45rem, 2.7vw, 2.3rem); line-height: 1.22;
+            letter-spacing: -0.015em; color: rgba(240,244,255,0.8);
           }
           .lab-name-hi {
-            font-weight: 800; color: var(--labo-accent-teal);
+            font-weight: 800; font-size: 1.1em; color: var(--labo-accent-teal);
             animation: lab-hi 0.7s ease-out both;
           }
           @keyframes lab-rule { from { transform: scaleY(0); } to { transform: scaleY(1); } }
           @keyframes lab-hi {
-            from { color: rgba(240,244,255,0.62); text-shadow: none; }
+            from { color: rgba(240,244,255,0.8); text-shadow: none; }
             40% { color: #fff; text-shadow: 0 0 18px rgba(0,212,170,0.9); }
-            to { color: var(--labo-accent-teal); text-shadow: 0 0 14px rgba(0,212,170,0.35); }
+            to { color: var(--labo-accent-teal); text-shadow: 0 0 22px rgba(0,212,170,0.5); }
           }
           @media (prefers-reduced-motion: reduce) {
             .lab-name-rule, .lab-name-hi { animation: none; }
-            .lab-name-hi { text-shadow: 0 0 14px rgba(0,212,170,0.35); }
+            .lab-name-hi { text-shadow: 0 0 22px rgba(0,212,170,0.5); }
           }
         `}</style>
 
@@ -171,7 +171,7 @@ export default function Hero({
             className="hero-line"
             style={{
               display: "block",
-              fontSize: "clamp(3rem, 6vw, 5.75rem)",
+              fontSize: "clamp(2.7rem, 5.1vw, 4.9rem)",
               color: "var(--labo-text)",
             }}
           >
@@ -183,7 +183,7 @@ export default function Hero({
             className="hero-line"
             style={{
               display: "block",
-              fontSize: "clamp(3rem, 6vw, 5.75rem)",
+              fontSize: "clamp(2.7rem, 5.1vw, 4.9rem)",
               color: "var(--labo-text)",
             }}
           >
@@ -196,7 +196,7 @@ export default function Hero({
             style={{
               display: "inline-block",
               fontSize: isFr
-                ? "clamp(2.15rem, 4.4vw, 4.25rem)"
+                ? "clamp(1.95rem, 3.8vw, 3.6rem)"
                 : "clamp(3rem, 6vw, 5.75rem)",
               fontStyle: "italic",
               background: "linear-gradient(120deg, var(--labo-accent-teal) 0%, var(--labo-accent-violet) 100%)",
@@ -219,7 +219,7 @@ export default function Hero({
             className="hero-line"
             style={{
               display: "block",
-              fontSize: "clamp(3rem, 6vw, 5.75rem)",
+              fontSize: "clamp(2.7rem, 5.1vw, 4.9rem)",
               color: "var(--labo-text)",
               opacity: 0.85,
             }}
