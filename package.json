@@ -11,7 +11,8 @@
     "sanity:seed": "node scripts/sanity-seed.mjs",
     "translate": "node scripts/auto-translate.mjs",
     "translate:en": "node scripts/auto-translate.mjs --target en",
-    "sanity:seed-architecture": "node scripts/seed-scientific-architecture.mjs"
+    "sanity:seed-architecture": "node scripts/seed-scientific-architecture.mjs",
+    "sanity:translate-description": "node scripts/sanity-translate-description.mjs"
   },
   "dependencies": {
     "@portabletext/react": "^6.0.2",
