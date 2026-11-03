@@ -67,7 +67,7 @@ export default function Header({
             : "bg-transparent",
         ].join(" ")}
       >
-        <div className="mx-auto flex w-full max-w-[120rem] items-center justify-between gap-6 px-[clamp(1.5rem,6vw,6rem)] py-4">
+        <div className="mx-auto flex w-full items-center justify-between gap-6 px-[clamp(1.5rem,6vw,6rem)] py-4">
           {/* Logo */}
           <Link
             href="/"
