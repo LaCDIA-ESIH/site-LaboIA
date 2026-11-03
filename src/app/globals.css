@@ -99,6 +99,9 @@ html {
 @media (min-width: 3000px) {
   html { font-size: 150%; }
 }
+@media (min-width: 4200px) {
+  html { font-size: 200%; }
+}
 
 /* Force dark background regardless of OS color scheme */
 html {
