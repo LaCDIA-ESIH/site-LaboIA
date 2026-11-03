@@ -7,6 +7,14 @@ import { sendEmail } from "@/lib/resend";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Seuls ces deux formulaires existent côté site (contact-form / collaborate-form).
+const allowedFormTypes = new Set(["contact", "collaborer"]);
+
+// Limites de taille : sans elles, n'importe qui pouvait stocker des champs
+// arbitrairement gros dans Sanity et dans l'email de notification.
+const maxLengths = { fullName: 120, email: 254, organization: 160, subject: 200, phone: 40, message: 5000 } as const;
+const isTooLong = (value: string | undefined, max: number) => Boolean(value && value.length > max);
+
 export async function POST(request: Request) {
   // Limitation de débit best-effort (voir src/lib/rate-limit.ts) — 5
   // soumissions / 10 min / IP (audit pré-production, SEC-2).
@@ -35,6 +43,21 @@ export async function POST(request: Request) {
 
   if (honeypot) {
     return NextResponse.json({ ok: true, message: "Demande enregistree." });
+  }
+
+  if (formType && !allowedFormTypes.has(formType)) {
+    return NextResponse.json({ ok: false, message: "Type de formulaire invalide." }, { status: 400 });
+  }
+
+  if (
+    isTooLong(fullName, maxLengths.fullName) ||
+    isTooLong(email, maxLengths.email) ||
+    isTooLong(organization, maxLengths.organization) ||
+    isTooLong(subject, maxLengths.subject) ||
+    isTooLong(phone, maxLengths.phone) ||
+    isTooLong(rawMessage, maxLengths.message)
+  ) {
+    return NextResponse.json({ ok: false, message: "Un des champs est trop long." }, { status: 400 });
   }
 
   if (!formType || !fullName || !email || !consent) {

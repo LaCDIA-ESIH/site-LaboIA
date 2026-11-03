@@ -5,6 +5,7 @@ import { REMOVED_NAV_TREES } from "./src/lib/nav";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   turbopack: {
     root: __dirname,
   },
