@@ -81,6 +81,7 @@ export default function Hero({
         style={{
           padding: "clamp(2rem,4.5vw,3.75rem) clamp(2rem,6vw,6rem) clamp(6.5rem,11vw,8rem)",
           maxWidth: "47.5rem",
+          marginLeft: "max(0px, calc((100% - 120rem) / 2))",
           zIndex: 10,
         }}
       >
