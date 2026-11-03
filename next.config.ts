@@ -4,8 +4,53 @@ import { REMOVED_NAV_TREES } from "./src/lib/nav";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
+// Origine du Matomo configuré (auto-hébergé ou cloud) : ajoutée à la CSP pour
+// que les statistiques continuent de fonctionner une fois la politique bloquante.
+const matomoOrigin = (() => {
+  try {
+    return process.env.NEXT_PUBLIC_MATOMO_URL ? new URL(process.env.NEXT_PUBLIC_MATOMO_URL).origin : "";
+  } catch {
+    return "";
+  }
+})();
+
+const analyticsSources = [
+  "https://www.googletagmanager.com",
+  "https://*.google-analytics.com",
+  "https://*.analytics.google.com",
+  "https://*.matomo.cloud",
+  matomoOrigin,
+]
+  .filter(Boolean)
+  .join(" ");
+
+// CSP bloquante pour le site public. 'unsafe-inline' reste nécessaire pour les
+// scripts/styles inline de Next.js (pas de nonce) ; 'unsafe-eval' est retiré.
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+  `script-src 'self' 'unsafe-inline' ${analyticsSources}`,
+  "style-src 'self' 'unsafe-inline'",
+  `img-src 'self' data: blob: https://cdn.sanity.io ${analyticsSources}`,
+  "font-src 'self' data:",
+  `connect-src 'self' https://*.sanity.io ${analyticsSources}`,
+].join("; ");
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async headers() {
+    return [
+      {
+        // /studio (Sanity Studio) a besoin de workers blob:, websockets, etc. :
+        // il est exclu de la politique du site public.
+        source: "/((?!studio).*)",
+        headers: [{ key: "Content-Security-Policy", value: contentSecurityPolicy }],
+      },
+    ];
+  },
   turbopack: {
     root: __dirname,
   },

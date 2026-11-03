@@ -12,7 +12,7 @@ type PartnerPreview = {
   shortDescription?: string;
   website?: string;
   tags?: string[];
-  logo?: { url: string | null; alt?: string } | null;
+  logo?: { url: string | null; alt?: string; width?: number; height?: number } | null;
 };
 
 type PartnersProps = {
@@ -33,8 +33,8 @@ function PartnerTile({ partner }: { partner: PartnerPreview }) {
     <Image
       src={partner.logo.url}
       alt={partner.logo.alt || partner.name}
-      width={140}
-      height={70}
+      width={partner.logo.width ?? 140}
+      height={partner.logo.height ?? 70}
       className="partner-tile-logo"
     />
   ) : (

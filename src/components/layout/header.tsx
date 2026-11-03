@@ -80,7 +80,7 @@ export default function Header({
                 alt={logoAlt}
                 width={36}
                 height={36}
-                className="object-contain transition-opacity group-hover:opacity-80"
+                className="h-full w-full object-contain transition-opacity group-hover:opacity-80"
               />
             </div>
             <div className="flex flex-col leading-none">
