@@ -38,6 +38,7 @@ function formatDate(dateStr?: string, locale = "fr"): string {
       day: "numeric",
       month: "long",
       year: "numeric",
+      timeZone: "UTC",
     });
   } catch {
     return dateStr;
