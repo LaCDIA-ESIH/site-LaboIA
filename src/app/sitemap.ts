@@ -8,7 +8,7 @@ import { siteUrl } from "@/lib/seo";
 
 // Perimetre reduit a 4 pages (voir next.config.ts pour les redirections des
 // anciennes routes).
-const staticPaths = ["/", "/axes-de-recherche", "/contact"];
+const staticPaths = ["/", "/axes-de-recherche"];
 
 function buildUrl(path: string, locale: (typeof locales)[number]) {
   return new URL(localizedPath(path, locale), siteUrl).toString();

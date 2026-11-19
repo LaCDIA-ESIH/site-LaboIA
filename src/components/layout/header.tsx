@@ -22,7 +22,6 @@ export default function Header({
   site: SiteSettings;
 }) {
   const t = useTranslations("header");
-  const tCommon = useTranslations("common");
   const basePath = usePathname() || "/";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -204,16 +203,6 @@ export default function Header({
               ))}
             </nav>
 
-            {/* Footer CTA */}
-            <div className="mt-8 pt-6 border-t border-white/8">
-              <Link
-                href="/contact"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold bg-[#00d4aa]/10 border border-[#00d4aa]/30 text-[#00d4aa] hover:bg-[#00d4aa]/20 transition"
-              >
-                {tCommon("contactUs")}
-              </Link>
-            </div>
           </div>
         </div>
       )}

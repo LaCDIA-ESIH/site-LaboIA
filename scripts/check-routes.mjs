@@ -13,7 +13,6 @@ const paths = [
   "/fr/formation",
   "/fr/actualites",
   "/fr/collaborer",
-  "/fr/contact",
   "/fr/ressources",
   "/fr/mentions-legales",
   "/fr/confidentialite",

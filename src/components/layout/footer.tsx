@@ -7,6 +7,8 @@ import type { Locale } from "@/lib/i18n";
 import type { Navigation, SiteSettings } from "@/lib/sanity/types";
 import { resolveNavItems } from "@/lib/nav";
 
+const CONTACT_EMAIL = "contact.lacdia@esih.edu";
+
 export default async function Footer({
   nav,
   site,
@@ -175,26 +177,14 @@ export default async function Footer({
                 {site.footerContactText && (
                   <p className="leading-relaxed">{site.footerContactText}</p>
                 )}
-                <Link
-                  href={site.footerContactCtaHref ?? "/contact"}
-                  className="inline-flex items-center gap-1.5 font-medium text-[#f0f4ff] transition-colors hover:text-[#00d4aa] group/link"
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="font-medium text-[#f0f4ff] break-all transition-colors hover:text-[#00d4aa]"
                 >
-                  {site.footerContactCtaLabel ?? t("contactCtaLabel")}
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="transition-transform group-hover/link:translate-x-0.5"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </Link>
+                  {CONTACT_EMAIL}
+                </a>
+                <p className="text-xs leading-relaxed">{t("location")}</p>
+                <p className="text-xs leading-relaxed">{t("responseTime")}</p>
               </div>
             </div>
           </div>

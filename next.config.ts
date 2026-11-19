@@ -95,12 +95,12 @@ const nextConfig: NextConfig = {
       ...homeRedirects,
       // Collaborer : plus de page dediee, tout passe par l'onglet
       // "Proposer une collaboration" sur /contact.
-      { source: "/collaborer", destination: "/fr/contact?tab=collaborate", permanent: false },
-      { source: "/collaborer/:path*", destination: "/fr/contact?tab=collaborate", permanent: false },
-      { source: "/fr/collaborer", destination: "/fr/contact?tab=collaborate", permanent: false },
-      { source: "/fr/collaborer/:path*", destination: "/fr/contact?tab=collaborate", permanent: false },
-      { source: "/en/collaborer", destination: "/en/contact?tab=collaborate", permanent: false },
-      { source: "/en/collaborer/:path*", destination: "/en/contact?tab=collaborate", permanent: false },
+      { source: "/collaborer", destination: "/fr", permanent: false },
+      { source: "/collaborer/:path*", destination: "/fr", permanent: false },
+      { source: "/fr/collaborer", destination: "/fr", permanent: false },
+      { source: "/fr/collaborer/:path*", destination: "/fr", permanent: false },
+      { source: "/en/collaborer", destination: "/en", permanent: false },
+      { source: "/en/collaborer/:path*", destination: "/en", permanent: false },
     ];
   },
   transpilePackages: ["sanity", "@sanity/ui", "@sanity/icons"],
