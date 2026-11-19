@@ -10,6 +10,10 @@ export const dynamic = "force-dynamic";
 
 const CONTACT_EMAIL = "contact.lacdia@esih.edu";
 
+// Formulaires (contact / collaboration) masqués tant que leur configuration
+// (Sanity + Resend) n'est pas effective. Repasser à true pour les réactiver.
+const SHOW_FORMS = false;
+
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
   const t = await getTranslations({ locale, namespace: "pages.contact" });
@@ -101,9 +105,12 @@ export default async function Page() {
 
       {/* Contenu principal : info + formulaire */}
       <section style={{ padding: "clamp(3rem, 6vw, 5rem) 0" }}>
-        <div className="container contact-layout" style={{ maxWidth: "64rem" }}>
+        <div
+          className={SHOW_FORMS ? "container contact-layout" : "container"}
+          style={{ maxWidth: "64rem" }}
+        >
           {/* Colonne gauche — infos */}
-          <aside>
+          <aside style={SHOW_FORMS ? undefined : { maxWidth: "36rem" }}>
             <div
               style={{
                 background: "rgba(255,255,255,0.03)",
@@ -234,9 +241,11 @@ export default async function Page() {
           </aside>
 
           {/* Colonne droite — formulaire avec onglets */}
-          <div className="contact-form-wrapper">
-            <ContactCollaborateTabs forms={forms} locale={locale} />
-          </div>
+          {SHOW_FORMS && (
+            <div className="contact-form-wrapper">
+              <ContactCollaborateTabs forms={forms} locale={locale} />
+            </div>
+          )}
         </div>
       </section>
     </main>
