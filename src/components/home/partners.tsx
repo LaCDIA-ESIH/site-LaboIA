@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import type { MouseEvent } from "react";
 
 type PartnerPreview = {
@@ -84,14 +83,14 @@ export default function Partners({ title, intro, badge, items }: PartnersProps) 
           {items.map((partner) => (
             <PartnerTile key={partner._id} partner={partner} />
           ))}
-          <Link
-            href="/contact"
+          <a
+            href="mailto:contact.lacdia@esih.edu"
             aria-label={t("becomePartnerAria")}
             className="partner-tile partner-tile-ghost"
           >
             <span>{t("becomePartner")}</span>
             <span aria-hidden="true">→</span>
-          </Link>
+          </a>
         </div>
       </div>
     </section>
