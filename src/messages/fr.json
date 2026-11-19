@@ -371,7 +371,7 @@
       "academic": "Académique"
     },
     "intro": {
-      "foundedLabel": "Fondé en 2026"
+      "foundedLabel": "Fondé en 2025"
     }
   },
   "forms": {
@@ -576,7 +576,7 @@
       "metaDescription": "Écrivez-nous ou proposez une collaboration avec le LaCDIA.",
       "badge": "Travaillons ensemble",
       "title": "Contactez le LaCDIA",
-      "subtitle": "Une question, une idée de collaboration ou simplement envie d'en savoir plus ? Utilisez le formulaire ou retrouvez-nous directement.",
+      "subtitle": "Une question, une idée de collaboration ou simplement envie d'en savoir plus ? Retrouvez-nous directement par e-mail.",
       "infoTitle": "Informations de contact",
       "emailLabel": "E-mail général",
       "locationLabel": "Localisation",
@@ -584,7 +584,7 @@
       "hoursLabel": "Réponse estimée",
       "hours": "Sous 3 à 5 jours ouvrés",
       "followLabel": "Suivez-nous",
-      "collabNote": "Vous souhaitez proposer un partenariat ou une collaboration de recherche ? Utilisez l'onglet « Collaboration »."
+      "collabNote": "Vous souhaitez proposer un partenariat ou une collaboration de recherche ? Écrivez-nous par e-mail en précisant l'objet de votre démarche."
     },
     "contactTabs": {
       "contact": "Nous contacter",
