@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 
-import CollaborateCta from "@/components/home/collaborate-cta";
 import Highlights from "@/components/home/highlights";
 import NeuralHeroBackground from "@/components/shared/neural-hero-background";
 import { ProjectCard } from "@/components/cards/cards";
@@ -11,7 +10,9 @@ import { localizedPath } from "@/lib/i18n";
 import { projectListQuery } from "@/lib/sanity/queries";
 import type { ProjectListItem } from "@/lib/sanity/types";
 import { buildMetadata } from "@/lib/seo";
-import { getHomeData, getSolutionsPageData } from "@/lib/cms";
+import { getSolutionsPageData } from "@/lib/cms";
+
+import { isRemovedNavHref } from "@/lib/nav";
 
 export const dynamic = "force-dynamic";
 
@@ -34,10 +35,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function SolutionsPage() {
   const locale = await getServerLocale();
-  const [projects, solutionsPage, homeData] = await Promise.all([
+  const [projects, solutionsPage] = await Promise.all([
     sanityFetch<ProjectListItem[]>(projectListQuery, { locale }, []),
     getSolutionsPageData(locale),
-    getHomeData(locale),
   ]);
 
   const appliedProjects = projects.filter(
@@ -45,7 +45,6 @@ export default async function SolutionsPage() {
   );
 
   const featuredUseCase = solutionsPage.featuredUseCase;
-  const collaborate = homeData.home;
 
   return (
     <main>
@@ -117,7 +116,7 @@ export default async function SolutionsPage() {
           )}
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginTop: "2rem" }}>
-            {solutionsPage.heroPrimaryCta ? (
+            {solutionsPage.heroPrimaryCta && !isRemovedNavHref(solutionsPage.heroPrimaryCta.href) ? (
               <Link href={solutionsPage.heroPrimaryCta.href} className="btn-cta-primary">
                 {solutionsPage.heroPrimaryCta.label}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -125,7 +124,7 @@ export default async function SolutionsPage() {
                 </svg>
               </Link>
             ) : null}
-            {solutionsPage.heroSecondaryCta ? (
+            {solutionsPage.heroSecondaryCta && !isRemovedNavHref(solutionsPage.heroSecondaryCta.href) ? (
               <Link href={solutionsPage.heroSecondaryCta.href} className="btn-secondary">
                 {solutionsPage.heroSecondaryCta.label}
               </Link>
@@ -307,11 +306,6 @@ export default async function SolutionsPage() {
         </section>
       )}
 
-      <CollaborateCta
-        title={collaborate.collaborateTitle}
-        body={collaborate.collaborateBody}
-        actions={collaborate.collaborateActions ?? []}
-      />
     </main>
   );
 }
