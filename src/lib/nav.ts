@@ -18,6 +18,7 @@ export const REMOVED_NAV_TREES = [
   "publications",
   "ressources",
   "contact",
+  "collaborer",
 ] as const;
 
 /**

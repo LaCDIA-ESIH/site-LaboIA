@@ -7,7 +7,6 @@ import GovernanceEthics from "@/components/home/governance-ethics";
 import Team from "@/components/home/team";
 import ActualitesSection from "@/components/home/actualites-section";
 import Partners from "@/components/home/partners";
-import CollaborateCta from "@/components/home/collaborate-cta";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { getServerLocale } from "@/lib/i18n-server";
@@ -15,26 +14,6 @@ import { localizedPath } from "@/lib/i18n";
 import { getHomeData, getSiteSettings } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
-
-type ActionVariant = "primary" | "secondary" | "tertiary";
-
-type CmsAction = {
-  label: string;
-  href: string;
-  variant?: string;
-};
-
-const allowedVariants = new Set<ActionVariant>(["primary", "secondary", "tertiary"]);
-
-function normalizeActions(actions?: CmsAction[]) {
-  if (!actions) return [];
-  return actions.map((action) => ({
-    ...action,
-    variant: allowedVariants.has(action.variant as ActionVariant)
-      ? (action.variant as ActionVariant)
-      : undefined,
-  }));
-}
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
@@ -121,11 +100,6 @@ export default async function Home() {
         intro={home.partnersIntro}
         badge={home.partnersBadge}
         items={partners}
-      />
-      <CollaborateCta
-        title={home.collaborateTitle}
-        body={home.collaborateBody}
-        actions={normalizeActions(home.collaborateActions)}
       />
     </>
   );
