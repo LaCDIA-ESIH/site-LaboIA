@@ -15,7 +15,15 @@ const allowedFormTypes = new Set(["contact", "collaborer"]);
 const maxLengths = { fullName: 120, email: 254, organization: 160, subject: 200, phone: 40, message: 5000 } as const;
 const isTooLong = (value: string | undefined, max: number) => Boolean(value && value.length > max);
 
+// Formulaires désactivés tant que Sanity/Resend ne sont pas configurés (la page
+// /contact est retirée). Repasser à true avec la réactivation de l'UI.
+const FORMS_ENABLED = false;
+
 export async function POST(request: Request) {
+  if (!FORMS_ENABLED) {
+    return NextResponse.json({ ok: false, message: "Formulaires indisponibles." }, { status: 410 });
+  }
+
   // Limitation de débit best-effort (voir src/lib/rate-limit.ts) — 5
   // soumissions / 10 min / IP (audit pré-production, SEC-2).
   const ip = getClientIp(request);
