@@ -93,8 +93,7 @@ const nextConfig: NextConfig = {
       { source: "/fr/actualites", destination: "/fr", permanent: false },
       { source: "/en/actualites", destination: "/en", permanent: false },
       ...homeRedirects,
-      // Collaborer : plus de page dediee, tout passe par l'onglet
-      // "Proposer une collaboration" sur /contact.
+      // Collaborer : page retiree (formulaires non configures) -> accueil.
       { source: "/collaborer", destination: "/fr", permanent: false },
       { source: "/collaborer/:path*", destination: "/fr", permanent: false },
       { source: "/fr/collaborer", destination: "/fr", permanent: false },

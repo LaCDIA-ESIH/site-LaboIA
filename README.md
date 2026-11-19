@@ -8,7 +8,7 @@ Site institutionnel bilingue (FR/EN) pour LaCDIA, construit avec Next.js App Rou
 - Traductions UI statiques centralisées dans `src/messages/{fr,en}.json` (next-intl, un seul système de traduction) ; le contenu éditorial (pages, axes, actualités...) reste piloté par Sanity (`localeString`/`localeText`).
 - SEO complet : metadata, Open Graph, sitemap et robots.
 - Contenu hybride : contenu local (`src/content`) + contenu dynamique Sanity.
-- Formulaires (collaborer/contact) stockés dans Sanity, notification email via Resend si configuré.
+- Formulaires (collaborer/contact) : code conservé mais désactivé (pages retirées, coordonnées dans le footer) tant que Sanity/Resend ne sont pas configurés.
 - Newsletter (inscription/désinscription) : abonnés stockés dans Sanity (`newsletterSubscriber`), email de confirmation de désinscription via Resend. Le formulaire de désinscription est toujours affiché sur `/newsletter`, indépendamment du contenu Sanity de la page.
 - Analytics Matomo ou GA4, activés après consentement cookies.
 
