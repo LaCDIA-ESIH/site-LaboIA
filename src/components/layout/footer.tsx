@@ -140,6 +140,7 @@ export default async function Footer({
                 >
                   {CONTACT_EMAIL}
                 </a>
+                <address className="text-xs not-italic leading-relaxed">{t("address")}</address>
                 <p className="text-xs leading-relaxed">{t("location")}</p>
                 <p className="text-xs leading-relaxed">{t("responseTime")}</p>
                 <div className="mt-2 flex items-center gap-3">
