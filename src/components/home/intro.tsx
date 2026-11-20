@@ -190,7 +190,7 @@ export default async function Intro({
                 fontFamily: "var(--font-mono)", fontSize: "0.62rem", letterSpacing: "0.2em",
                 textTransform: "uppercase", color: "var(--labo-accent-violet)", fontWeight: 700,
               }}>
-                Mission
+                {pick(locale, { fr: "Mission", en: "Mission", ht: "Misyon" })}
               </span>
             </div>
 

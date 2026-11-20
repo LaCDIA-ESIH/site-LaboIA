@@ -12,7 +12,17 @@
   "nav": {
     "home": "Akèy",
     "news": "Nouvèl",
-    "solutions": "Aks rechèch"
+    "solutions": "Aks rechèch",
+    "about": "Sou nou",
+    "research": "Rechèch",
+    "lacdiaTech": "LaCDIA Tech",
+    "team": "Ekip",
+    "collaborate": "Kolabore",
+    "contact": "Kontak",
+    "partnerships": "Patenarya",
+    "publications": "Piblikasyon",
+    "training": "Fòmasyon",
+    "resources": "Resous"
   },
   "header": {
     "tagline": "Laboratwa inovasyon ak rechèch aplike nan IA ak syans done",
@@ -53,7 +63,13 @@
     "readMore": "Li plis",
     "close": "Fèmen",
     "keywords": "Mo kle",
-    "backToNews": "Retounen nan nouvèl yo"
+    "backToNews": "Retounen nan nouvèl yo",
+    "contactUs": "Kontakte nou",
+    "collaborate": "Kolabore avèk nou",
+    "discoverServices": "Dekouvri sèvis nou yo",
+    "discoverResearch": "Dekouvri rechèch nou yo",
+    "requestQuote": "Mande yon devi",
+    "becomePartner": "Vin patnè"
   },
   "cookies": {
     "title": "Cookies",
@@ -64,7 +80,57 @@
   },
   "home": {
     "hero": {
-      "labLines": [[{"t": "La", "hi": true}, {"t": "boratwa"}], [{"t": "K", "hi": true}, {"t": "arayibeyen"}], [{"t": "Syans "}, {"t": "D", "hi": true}, {"t": "one"}], [{"t": "ak "}, {"t": "E", "hi": true}, {"t": "ntèlijans "}, {"t": "A", "hi": true}, {"t": "tifisyèl"}]],
+      "labLines": [
+        [
+          {
+            "t": "La",
+            "hi": true
+          },
+          {
+            "t": "boratwa"
+          }
+        ],
+        [
+          {
+            "t": "K",
+            "hi": true
+          },
+          {
+            "t": "arayibeyen"
+          }
+        ],
+        [
+          {
+            "t": "Syans "
+          },
+          {
+            "t": "D",
+            "hi": true
+          },
+          {
+            "t": "one"
+          }
+        ],
+        [
+          {
+            "t": "ak "
+          },
+          {
+            "t": "E",
+            "hi": true
+          },
+          {
+            "t": "ntèlijans "
+          },
+          {
+            "t": "A",
+            "hi": true
+          },
+          {
+            "t": "tifisyèl"
+          }
+        ]
+      ],
       "labAria": "Laboratwa Karayibeyen Syans Done ak Entèlijans Atifisyèl",
       "badge": "IA · Rechèch · Inovasyon",
       "titleLine1": "Soti nan done",
@@ -77,15 +143,58 @@
       "ctaNews": "Dènye nouvèl yo",
       "factsLabel": "Laboratwa a an ti kras",
       "facts": [
-        { "value": "2025", "label": "Ane fondasyon" },
-        { "value": "2", "label": "Aks rechèch" },
-        { "value": "1", "label": "Pòl valorizasyon" }
+        {
+          "value": "2025",
+          "label": "Ane fondasyon"
+        },
+        {
+          "value": "2",
+          "label": "Aks rechèch"
+        },
+        {
+          "value": "1",
+          "label": "Pòl valorizasyon"
+        }
       ],
       "nameLabel": "Sa LaCDIA vle di"
     },
     "kpis": {
       "sectionLabel": "Chif kle yo",
-      "updated": "Dènye mizajou :"
+      "updated": "Dènye mizajou :",
+      "fallbackItems": [
+        {
+          "_id": "kpi-1",
+          "key": "chercheurs",
+          "value": "5+",
+          "label": "Chèchè aktif",
+          "note": "Chèchè, doktoran ak kolaboratè ki aktif",
+          "status": "confirmed"
+        },
+        {
+          "_id": "kpi-2",
+          "key": "projets",
+          "value": "0",
+          "label": "Pwojè k ap fèt",
+          "note": "Pwojè rechèch k ap lanse",
+          "status": "confirmed"
+        },
+        {
+          "_id": "kpi-3",
+          "key": "partenariats",
+          "value": "1",
+          "label": "Patenarya aktif",
+          "note": "Yon patenarya aktif nan rechèch ak medyasyon",
+          "status": "confirmed"
+        },
+        {
+          "_id": "kpi-4",
+          "key": "axes",
+          "value": "2",
+          "label": "Aks rechèch",
+          "note": "De aks estriktirant + yon Pòl valorizasyon",
+          "status": "confirmed"
+        }
+      ]
     },
     "highlights": {
       "sectionLabel": "Achitekti syantifik 2026–2030",
@@ -133,12 +242,30 @@
       "ethicsTitle": "Etik · Eksplikabilite · Sekirite · Gouvènans IA",
       "ethicsText": "Etik IA pa yon aks apa : li antre nan chak nan de aks yo ak nan Pòl la, dapre sa sijè a mande. Chak pwojè gen yon evalyasyon patipri, yon dokimantasyon limit itilizasyon, epi, si sa nesesè, yon pwotokòl eksplikabilite ki adapte ak itilizatè final yo.",
       "ethicsPillars": [
-        { "icon": "shield", "label": "Evalyasyon & diminisyon patipri" },
-        { "icon": "eye", "label": "Eksplikabilite ki adapte ak itilizatè yo" },
-        { "icon": "lock", "label": "Sekirite done & sibè sekirite" },
-        { "icon": "scale", "label": "Gouvènans & trasabilite metòd yo" },
-        { "icon": "check", "label": "Validasyon etik & regleman" },
-        { "icon": "doc", "label": "Dokimantasyon limit itilizasyon" }
+        {
+          "icon": "shield",
+          "label": "Evalyasyon & diminisyon patipri"
+        },
+        {
+          "icon": "eye",
+          "label": "Eksplikabilite ki adapte ak itilizatè yo"
+        },
+        {
+          "icon": "lock",
+          "label": "Sekirite done & sibè sekirite"
+        },
+        {
+          "icon": "scale",
+          "label": "Gouvènans & trasabilite metòd yo"
+        },
+        {
+          "icon": "check",
+          "label": "Validasyon etik & regleman"
+        },
+        {
+          "icon": "doc",
+          "label": "Dokimantasyon limit itilizasyon"
+        }
       ],
       "objectivesLabel": "Objektif priyorite",
       "sectorsLabel": "Teren aplikasyon"
@@ -147,7 +274,59 @@
       "sectionLabel": "Ekip syantifik",
       "sectionTitle": "Yon ekspètiz syantifik wo nivo, anrasine an Ayiti epi ouvè sou mond lan",
       "sectionIntro": "LaCDIA rasanble yon dizèn pwofil syantifik ak teknik ki konplemantè — chèchè nasyonal ak entènasyonal, enjenyè espesyalize ak ekspè nan teknoloji k ap parèt — pou pote yon rechèch seryè nan entèlijans atifisyèl ki anrasine nan reyalite karayibeyen yo.",
-      "note": "Gen pwofil ki gen plizyè responsablite syantifik ak enstitisyonèl ; prezantasyon sa a montre konpetans laboratwa a mobilize olye yon òganigram fiks."
+      "note": "Gen pwofil ki gen plizyè responsablite syantifik ak enstitisyonèl ; prezantasyon sa a montre konpetans laboratwa a mobilize olye yon òganigram fiks.",
+      "categories": [
+        {
+          "badge": "2 chèchè · HDR",
+          "title": "Chèchè senyò ki gen abilitasyon",
+          "description": "De chèchè nasyonal ki gen yon Abilitasyon pou Dirije Rechèch (HDR) ap sipèvize travay laboratwa a epi garanti egzijans syantifik li."
+        },
+        {
+          "badge": "3 ekspè",
+          "title": "Rezo syantifik entènasyonal",
+          "description": "De chèchè entènasyonal ak yon pwofesè emerit konplete nwayo syantifik sa a. Yo pote bay LaCDIA yon gade deyò ak kolaborasyon akademik ki byen etabli."
+        },
+        {
+          "badge": "2+ chèchè",
+          "title": "Chèchè nasyonal asosye",
+          "description": "Lòt chèchè nasyonal, ki gen ekspètiz konplemantè, ap antre piti piti nan laboratwa a epi kontribye nan elaji aks rechèch li yo."
+        },
+        {
+          "badge": "2 enjenyè",
+          "title": "Enjenyri IA ak done",
+          "description": "De enjenyè entèlijans atifisyèl, espesyalize nan trete gwo kantite done, ap asire aplikasyon teknik pwojè ak modèl laboratwa a."
+        },
+        {
+          "badge": "ESIH",
+          "title": "Rattachman enstitisyonèl",
+          "description": "LaCDIA rattache ak École Supérieure d'Infotronique d'Haïti (ESIH), ki garanti baz enstitisyonèl ak jiridik li. Direksyon syantifik laboratwa a depann de pwòp enstans gouvènans li yo.",
+          "linkLabel": "ESIH",
+          "linkHref": "https://esih.edu"
+        },
+        {
+          "badge": "1 ekspè",
+          "title": "Ekspètiz nan IA jeneratif",
+          "description": "Yon ekspè nan entèlijans atifisyèl jeneratif konplete ekip la. Li pote eksplorasyon teknoloji k ap parèt sa yo nan travay LaCDIA."
+        }
+      ],
+      "stats": [
+        {
+          "value": "11",
+          "label": "Manm mobilize"
+        },
+        {
+          "value": "2",
+          "label": "Chèchè entènasyonal"
+        },
+        {
+          "value": "2",
+          "label": "Enjenyè IA"
+        },
+        {
+          "value": "6",
+          "label": "Pwofil ekspètiz"
+        }
+      ]
     },
     "institution": {
       "label": "Enstitisyon ki pòte l",
@@ -168,7 +347,64 @@
       "defaultTitle": "Dènye nouvèl yo",
       "sourceLabel": "Sous",
       "readLabel": "Li",
-      "articlesLabel": "atik"
+      "articlesLabel": "atik",
+      "fallbackItems": [
+        {
+          "_id": "f1",
+          "slug": {
+            "current": "lancement-projets-ia-agricole"
+          },
+          "date": "2025-06-01",
+          "category": "Rechèch",
+          "title": "LaCDIA lanse premye pwojè rechèch li yo nan IA agrikòl",
+          "summary": "Laboratwa a lanse travay li sou entèlijans atifisyèl aplike nan agrikilti karayibeyen an ak de pwojè pilòt.",
+          "featured": true
+        },
+        {
+          "_id": "f2",
+          "slug": {
+            "current": "partenariat-esih-data-science"
+          },
+          "date": "2025-05-15",
+          "category": "Patenarya",
+          "title": "Patenarya estratejik ak ESIH pou fòmasyon nan Syans Done",
+          "summary": "LaCDIA ak ESIH asosye pou devlope yon kourikoulòm fòmasyon avanse nan syans done.",
+          "featured": false
+        },
+        {
+          "_id": "f3",
+          "slug": {
+            "current": "colloque-caribeeen-axes-2025"
+          },
+          "date": "2025-04-28",
+          "category": "Evènman",
+          "title": "Prezantasyon aks rechèch 2025–2026 pandan kolòk karayibeyen an",
+          "summary": "Ekip nou an te prezante fèy wout syantifik laboratwa a pandan kolòk rejyonal sou IA a.",
+          "featured": false
+        },
+        {
+          "_id": "f4",
+          "slug": {
+            "current": "appel-candidatures-2025"
+          },
+          "date": "2025-04-10",
+          "category": "Anons",
+          "title": "Apèl pou kandidati — Pwogram rechèch 2025",
+          "summary": "LaCDIA louvri pòt li bay chèchè ak doktoran ki enterese nan IA responsab ak gouvènans algoritmik.",
+          "featured": false
+        },
+        {
+          "_id": "f5",
+          "slug": {
+            "current": "nlp-creole-premiers-resultats"
+          },
+          "date": "2025-03-20",
+          "category": "Rechèch",
+          "title": "NLP kreyòl: premye rezilta sou modelizasyon kreyòl ayisyen an",
+          "summary": "Yon avansman enpòtan nan trete lang kreyòl ayisyen an otomatikman ak modèl nou fè tèt nou yo.",
+          "featured": false
+        }
+      ]
     },
     "heroBadge": "Entèlijans Atifisyèl - Inovasyon - Rechèch Aplike",
     "discoverLab": "Dekouvri solisyon nou yo",
@@ -215,6 +451,105 @@
       "loading": "Ap voye…",
       "success": "Tcheke bwat imèl ou : nou fèk voye yon lyen konfimasyon ba ou.",
       "error": "Nou pa t ka trete demann lan. Eseye ankò pita."
+    },
+    "contact": {
+      "formTitle": "Voye yon mesaj ban nou",
+      "fullName": "Non konplè",
+      "fullNamePlaceholder": "Prenon Non",
+      "email": "Adrès imèl",
+      "emailPlaceholder": "ou@imel.com",
+      "phone": "Telefòn (opsyonèl)",
+      "phonePlaceholder": "+509 XXXX XXXX",
+      "organisation": "Òganizasyon / Enstitisyon (opsyonèl)",
+      "organisationPlaceholder": "Inivèsite, antrepriz, ONG…",
+      "subject": "Objè",
+      "subjects": [
+        {
+          "value": "",
+          "label": "Chwazi yon objè…"
+        },
+        {
+          "value": "collaboration",
+          "label": "Kolaborasyon rechèch"
+        },
+        {
+          "value": "partenariat",
+          "label": "Patenarya enstitisyonèl"
+        },
+        {
+          "value": "stage",
+          "label": "Estaj oswa fòmasyon"
+        },
+        {
+          "value": "medias",
+          "label": "Medya ak kominikasyon"
+        },
+        {
+          "value": "question",
+          "label": "Kesyon jeneral"
+        },
+        {
+          "value": "autre",
+          "label": "Lòt"
+        }
+      ],
+      "message": "Mesaj",
+      "messagePlaceholder": "Dekri demann ou an…",
+      "consent": "Mwen aksepte pou enfòmasyon m yo trete dapre",
+      "privacy": "politik konfidansyalite a",
+      "submit": "Voye mesaj la",
+      "loading": "Ap voye…",
+      "success": "Mèsi. Mesaj ou an voye byen. N ap reponn ou nan pi bon delè.",
+      "error": "Gen yon erè ki fèt. Tanpri eseye ankò oswa ekri nou dirèkteman.",
+      "required": "Chan obligatwa"
+    },
+    "collaborate": {
+      "formTitle": "Pwopoze yon kolaborasyon",
+      "fullName": "Non konplè",
+      "fullNamePlaceholder": "Prenon Non",
+      "email": "Adrès imèl",
+      "emailPlaceholder": "ou@imel.com",
+      "organisation": "Òganizasyon / Enstitisyon",
+      "organisationPlaceholder": "Inivèsite, antrepriz, ONG…",
+      "collabType": "Kalite kolaborasyon",
+      "collabTypes": [
+        {
+          "value": "",
+          "label": "Chwazi yon kalite…"
+        },
+        {
+          "value": "recherche",
+          "label": "Rechèch an komen"
+        },
+        {
+          "value": "financement",
+          "label": "Finansman / sibvansyon"
+        },
+        {
+          "value": "terrain",
+          "label": "Aksè sou teren / done"
+        },
+        {
+          "value": "formation",
+          "label": "Fòmasyon ak transfè konpetans"
+        },
+        {
+          "value": "technique",
+          "label": "Patenarya teknik"
+        },
+        {
+          "value": "autre",
+          "label": "Lòt"
+        }
+      ],
+      "message": "Deskripsyon pwojè / pwopozisyon",
+      "messagePlaceholder": "Dekri pwopozisyon kolaborasyon ou an…",
+      "consent": "Mwen aksepte pou enfòmasyon m yo trete dapre",
+      "privacy": "politik konfidansyalite a",
+      "submit": "Voye pwopozisyon an",
+      "loading": "Ap voye…",
+      "success": "Mèsi. Pwopozisyon ou an anrejistre byen. N ap reponn ou nan pi bon delè.",
+      "error": "Gen yon erè ki fèt. Tanpri eseye ankò oswa ekri nou dirèkteman."
     }
   },
   "values": {
@@ -235,6 +570,10 @@
     "newsletter": {
       "unsubscribeTitle": "Jere abònman mwen",
       "unsubscribeIntro": "Mete adrès imèl ou pou dezabòne nan bilten LaCDIA. Nou pral voye yon lyen konfimasyon ba ou anvan dezabònman an fèt vre."
+    },
+    "contactTabs": {
+      "contact": "Kontakte nou",
+      "collaborate": "Pwopoze yon kolaborasyon"
     }
   }
 }

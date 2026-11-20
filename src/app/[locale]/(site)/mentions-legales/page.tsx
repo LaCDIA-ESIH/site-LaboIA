@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import EditablePageView from "@/components/content/editable-page-view";
+import LegalHtNotice from "@/components/content/legal-ht-notice";
 import { sanityFetch } from "@/lib/sanity/client";
 import { getServerLocale } from "@/lib/i18n-server";
 import { localizedPath } from "@/lib/i18n";
@@ -39,5 +40,10 @@ export default async function Page() {
     null,
   );
 
-  return <EditablePageView page={page} locale={locale} />;
+  return (
+    <>
+      <LegalHtNotice locale={locale} />
+      <EditablePageView page={page} locale={locale} />
+    </>
+  );
 }

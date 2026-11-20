@@ -1,3 +1,5 @@
+import { translateToHt } from "@/lib/i18n-ht/dictionary";
+import { overlayEn } from "@/lib/i18n-ht/dictionary-en";
 import { createClient } from "next-sanity";
 
 const projectId = process.env.SANITY_PROJECT_ID ?? process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -55,11 +57,12 @@ function isRawLocalized(value: object): value is Record<string, unknown> {
  * jamais remettre un objet à un composant qui attend du texte.
  */
 function collapseLocalized<T>(value: T, locale: string): T {
+  if (typeof value === "string") return (locale === "ht" ? translateToHt(value) : value) as T;
   if (Array.isArray(value)) return value.map((item) => collapseLocalized(item, locale)) as T;
   if (value && typeof value === "object") {
     if (isRawLocalized(value)) {
       const raw = value as Record<string, unknown>;
-      return (raw[locale] ?? raw.fr ?? raw.en ?? null) as T;
+      return collapseLocalized(raw[locale] ?? raw.fr ?? raw.en ?? null, locale) as T;
     }
     return Object.fromEntries(
       Object.entries(value as Record<string, unknown>).map(([k, v]) => [k, collapseLocalized(v, locale)]),
@@ -76,5 +79,7 @@ export async function sanityFetch<T>(
   if (!isSanityConfigured) return fallback;
   if (!sanityClient) return fallback;
   const result = await sanityClient.fetch<T>(query, params);
-  return params.locale === "ht" ? collapseLocalized(result, "ht") : result;
+  if (params.locale === "ht") return collapseLocalized(result, "ht");
+  if (params.locale === "en") return overlayEn(result);
+  return result;
 }
