@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { formatDate as formatLocalizedDate } from '@/lib/i18n-pick';
 import React from 'react';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
@@ -36,9 +37,7 @@ function newsHref(item: any, locale: string) {
 function formatNewsDate(dateStr: string | undefined, locale: string) {
   if (!dateStr) return '';
   try {
-    return new Date(dateStr).toLocaleDateString(locale === 'en' ? 'en-GB' : 'fr-FR', {
-      day: 'numeric', month: 'long', year: 'numeric',
-    });
+    return formatLocalizedDate(dateStr, locale === 'en' || locale === 'ht' ? locale : 'fr');
   } catch {
     return dateStr;
   }
@@ -194,7 +193,7 @@ export function PageBuilder({
             const title = getLocalValue(block.title, locale);
             const intro = getLocalValue(block.intro, locale);
             const kpis = block.kpisList || [];
-            const stripeColors = ['#00d4aa', '#6c63ff', '#00b4e4', '#6c63ff'];
+            const stripeColors = ['var(--haiti-blue)', 'var(--haiti-red)', 'var(--haiti-blue)', 'var(--haiti-red)'];
 
             return (
               <section key={key} className={toneClass(index)} style={{ padding: 'clamp(4rem,7vw,6rem) 0' }}>
@@ -205,7 +204,7 @@ export function PageBuilder({
                   </div>
 
                   {kpis.length > 0 && (
-                    <div style={{ display: 'flex', flexWrap: 'wrap', borderRadius: 20, border: '1px solid var(--labo-border)', background: 'rgba(17,24,39,0.5)', padding: '2.5rem 0' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', borderRadius: 20, border: '1px solid var(--labo-border)', background: 'var(--labo-surface)', padding: '2.5rem 0' }}>
                       {kpis.map((kpi: any, i: number) => {
                         const kLabel = getLocalValue(kpi.labelIntl, locale) || kpi.label;
                         const kNote = getLocalValue(kpi.noteIntl, locale) || kpi.note;
@@ -218,7 +217,7 @@ export function PageBuilder({
                             </div>
                             <span aria-hidden="true" style={{ display: 'block', width: 36, height: 3, borderRadius: 999, margin: '0.75rem 0 0.9rem', background: `linear-gradient(90deg, ${color}, ${gradEnd})` }} />
                             <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.92rem', fontWeight: 700, color: 'var(--labo-text)', marginBottom: '0.3rem' }}>{kLabel}</div>
-                            {kNote && <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.06em', color: 'rgba(136,146,176,0.55)', margin: 0 }}>{kNote}</p>}
+                            {kNote && <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.06em', color: 'rgba(var(--ink-rgb),0.55)', margin: 0 }}>{kNote}</p>}
                           </div>
                         );
                       })}

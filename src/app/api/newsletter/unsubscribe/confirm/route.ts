@@ -6,7 +6,7 @@ import { isSanityWriteConfigured, unsubscribeByEmail } from "@/lib/newsletter-su
 // vérifié (signature HMAC + expiration) avant toute désinscription réelle
 // du document Sanity — voir audit pré-production, constat SEC-1 / COMP-1.
 
-function htmlPage(locale: "fr" | "en", title: string, body: string) {
+function htmlPage(locale: "fr" | "en" | "ht", title: string, body: string) {
   return new Response(
     `<!doctype html>
 <html lang="${locale}">
@@ -51,13 +51,22 @@ const copyByLocale = {
     okTitle: "You're unsubscribed",
     okBody: "You will no longer receive the LaCDIA newsletter.",
   },
+  ht: {
+    invalidTitle: "Lyen an ekspire oswa li pa valid",
+    invalidBody: "Lyen dezabònman sa a pa valid ankò. Tanpri refè yon demann depi paj bilten an.",
+    errorTitle: "Yon erè fèt",
+    errorBody: "Nou pa t ka trete dezabònman ou an. Eseye ankò pita oswa kontakte nou dirèkteman.",
+    okTitle: "Dezabònman konfime",
+    okBody: "Ou p ap resevwa bilten LaCDIA ankò.",
+  },
 };
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const email = searchParams.get("email")?.trim().toLowerCase();
   const token = searchParams.get("token");
-  const locale: "fr" | "en" = searchParams.get("locale") === "en" ? "en" : "fr";
+  const localeParam = searchParams.get("locale");
+  const locale: "fr" | "en" | "ht" = localeParam === "en" ? "en" : localeParam === "ht" ? "ht" : "fr";
   const copy = copyByLocale[locale];
 
   if (!email || !token || !verifyUnsubscribeToken(email, token)) {

@@ -6,7 +6,6 @@ import CollaborateForm from "@/components/forms/collaborate-form";
 import NewsletterForm from "@/components/forms/newsletter-form";
 import NewsletterUnsubscribeForm from "@/components/forms/newsletter-unsubscribe-form";
 import PortableTextRenderer from "@/components/content/portable-text";
-import NeuralHeroBackground from "@/components/shared/neural-hero-background";
 import type { Locale } from "@/lib/i18n";
 import type { FormSettings, InstitutionalPage, PageSection } from "@/lib/sanity/types";
 
@@ -57,7 +56,7 @@ function EditableSection({ section, forms, locale }: { section: PageSection; for
 
   return (
     <section id={section.anchor} className={sectionClass(section.variant)}>
-      {isHero ? <NeuralHeroBackground /> : isDark ? <div className="section-pattern grid-pattern pattern-40" /> : null}
+      {isDark ? <div className="section-pattern grid-pattern pattern-40" /> : null}
       <div
         className="container"
         style={{

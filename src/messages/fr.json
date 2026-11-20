@@ -1,4 +1,14 @@
 {
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "cta": "Retour à l'accueil"
+  },
+  "brand": {
+    "carriedBy": "Porté par",
+    "esihName": "École Supérieure d'Infotronique d'Haïti",
+    "descriptor": "Laboratoire Caribéen des sciences de Données et de l'Intelligence Artificielle"
+  },
   "nav": {
     "home": "Accueil",
     "about": "À propos",
@@ -35,7 +45,9 @@
     "descriptionFallback": "Recherche appliquée en intelligence artificielle et science des données au service des communautés caribéennes.",
     "contactCtaLabel": "Écrire au laboratoire",
     "location": "Haïti · Caraïbes",
+    "address": "#29, deuxième ruelle Nazon, Port-au-Prince, Haïti",
     "responseTime": "Réponse sous 3 à 5 jours ouvrés",
+    "partners": "Partenaires",
     "manageCookies": "Gérer mes cookies"
   },
   "common": {
@@ -76,31 +88,16 @@
       "titleLine3": "caribéenne,",
       "titleLine4": "responsable.",
       "subtitle": "Recherche, innovation et intelligence artificielle au service des grands défis scientifiques et sociétaux.",
-      "primaryLabel": "Collaborer avec le laboratoire",
-      "secondaryLabel": "Notre architecture scientifique",
-      "canvasLabel": "Réseau neuronal caribéen",
-      "scrollHint": "scroll"
-    },
-    "ticker": {
-      "ariaLabel": "Domaines de recherche",
-      "items": [
-        "Intelligence Artificielle",
-        "Science des Données",
-        "Recherche Appliquée",
-        "Vision par Ordinateur",
-        "IA Responsable",
-        "Apprentissage Automatique",
-        "Haïti · Caraïbe",
-        "Systèmes Multi-Agents",
-        "RAG & LLM",
-        "Agriculture Numérique",
-        "Santé & IA",
-        "Gouvernance IA",
-        "Deep Learning",
-        "NLP Créole",
-        "Data Engineering",
-        "ESIH · LaCDIA"
-      ]
+      "kicker": "Laboratoire de recherche porté par l'ESIH",
+      "ctaScience": "Notre architecture scientifique",
+      "ctaNews": "Dernières actualités",
+      "factsLabel": "Le laboratoire en bref",
+      "facts": [
+        { "value": "2025", "label": "Année de fondation" },
+        { "value": "2", "label": "Axes de recherche" },
+        { "value": "1", "label": "Pôle de valorisation" }
+      ],
+      "nameLabel": "Ce que signifie LaCDIA"
     },
     "kpis": {
       "sectionLabel": "Chiffres clés",
@@ -271,6 +268,12 @@
           "label": "Profils d'expertise"
         }
       ]
+    },
+    "institution": {
+      "label": "Institution porteuse",
+      "title": "Une initiative de l'ESIH, ancrée en Haïti",
+      "body": "Le LaCDIA est porté par l'École Supérieure d'Infotronique d'Haïti, qui en garantit l'ancrage institutionnel et juridique. La direction scientifique du laboratoire relève de ses propres instances de gouvernance.",
+      "cta": "Découvrir l'ESIH"
     },
     "partners": {
       "becomePartner": "Devenez partenaire",

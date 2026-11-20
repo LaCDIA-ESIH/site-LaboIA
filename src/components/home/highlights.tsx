@@ -134,7 +134,7 @@ function AxeCard({
       className="axe-card-scientific"
       style={{
         position: "relative",
-        background: "linear-gradient(145deg, #0d1525 0%, #111827 100%)",
+        background: "var(--labo-surface)",
         border: "1px solid " + border,
         borderRadius: 20,
         padding: "2.5rem 2.25rem 2rem",
@@ -148,13 +148,13 @@ function AxeCard({
       {/* Top accent line */}
       <div aria-hidden="true" style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 3,
-        background: `linear-gradient(90deg, ${color}, ${color === "#00d4aa" ? "#6c63ff" : "#00d4aa"})`,
+        background: `linear-gradient(90deg, ${color}, ${color === "var(--haiti-blue)" ? "var(--haiti-red)" : "var(--haiti-blue)"})`,
       }} />
 
       {/* Ghost number */}
       <span aria-hidden="true" style={{
         position: "absolute", bottom: "-0.5rem", right: "1.5rem",
-        fontFamily: "var(--font-display)", fontSize: "8rem", fontWeight: 900,
+        fontFamily: "var(--font-display)", fontSize: "8rem", fontWeight: 600,
         lineHeight: 1, color, opacity: 0.04, userSelect: "none", pointerEvents: "none",
       }}>
         {num}
@@ -164,7 +164,7 @@ function AxeCard({
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <div style={{
           width: 52, height: 52, borderRadius: 14,
-          background: `radial-gradient(circle at 30% 30%, ${color}44, ${color}11)`,
+          background: `radial-gradient(circle at 30% 30%, color-mix(in srgb, ${color} 27%, transparent), color-mix(in srgb, ${color} 7%, transparent))`,
           border: "1px solid " + border,
           display: "flex", alignItems: "center", justifyContent: "center", color,
           flexShrink: 0,
@@ -184,7 +184,7 @@ function AxeCard({
       {/* Title */}
       <h3 style={{
         fontFamily: "var(--font-display)", fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
-        fontWeight: 800, color: "var(--labo-text)", margin: 0, lineHeight: 1.25,
+        fontWeight: 600, color: "var(--labo-text)", margin: 0, lineHeight: 1.25,
         letterSpacing: "-0.02em",
       }}>
         {title}
@@ -216,7 +216,7 @@ function AxeCard({
         }}>
           {objectivesLabel}
         </p>
-        <p style={{ fontSize: "0.8rem", color: "rgba(240,244,255,0.55)", lineHeight: 1.7, margin: 0 }}>
+        <p style={{ fontSize: "0.8rem", color: "rgba(var(--ink-rgb),0.66)", lineHeight: 1.7, margin: 0 }}>
           {objectives.split("·").map((obj, i) => (
             <span key={i} style={{ display: "block" }}>
               {i > 0 ? "· " : ""}{obj.trim()}
@@ -234,27 +234,27 @@ function PoleCard({
 }: {
   label: string; title: string; description: string; sectors: string[]; note: string; sectorsLabel: string;
 }) {
-  const gold = "#f0b429";
-  const goldBg = "rgba(240,180,41,0.1)";
-  const goldBorder = "rgba(240,180,41,0.22)";
+  const gold = "var(--ink)";
+  const goldBg = "rgba(var(--ink-rgb),0.06)";
+  const goldBorder = "rgba(var(--ink-rgb),0.2)";
 
   return (
     <div style={{
       position: "relative",
-      background: "linear-gradient(135deg, #0f1a2e 0%, #0a1020 100%)",
+      background: "var(--labo-surface)",
       border: "1px solid " + goldBorder,
       borderRadius: 20,
       padding: "2.25rem 2.5rem",
       overflow: "hidden",
       display: "grid",
-      gridTemplateColumns: "1fr 1fr",
+      gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 17rem), 1fr))",
       gap: "2rem",
       alignItems: "start",
     }}>
       {/* Top accent */}
       <div aria-hidden="true" style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 3,
-        background: `linear-gradient(90deg, ${gold}, rgba(240,180,41,0.2), transparent)`,
+        background: `linear-gradient(90deg, ${gold}, rgba(var(--ink-rgb),0.2), transparent)`,
       }} />
 
       {/* Left — identity */}
@@ -262,7 +262,7 @@ function PoleCard({
         <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
           <div style={{
             width: 52, height: 52, borderRadius: 14,
-            background: `radial-gradient(circle at 30% 30%, ${gold}44, ${gold}11)`,
+            background: `radial-gradient(circle at 30% 30%, color-mix(in srgb, ${gold} 20%, transparent), color-mix(in srgb, ${gold} 5%, transparent))`,
             border: "1px solid " + goldBorder,
             display: "flex", alignItems: "center", justifyContent: "center",
           }}>
@@ -279,7 +279,7 @@ function PoleCard({
         </div>
         <h3 style={{
           fontFamily: "var(--font-display)", fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
-          fontWeight: 800, color: "var(--labo-text)", margin: 0, letterSpacing: "-0.02em", lineHeight: 1.3,
+          fontWeight: 600, color: "var(--labo-text)", margin: 0, letterSpacing: "-0.02em", lineHeight: 1.3,
         }}>
           {title}
         </h3>
@@ -304,10 +304,10 @@ function PoleCard({
           </div>
         </div>
         <div style={{
-          background: "rgba(240,180,41,0.06)", border: "1px solid rgba(240,180,41,0.15)",
+          background: "rgba(var(--ink-rgb),0.04)", border: "1px solid rgba(var(--ink-rgb),0.14)",
           borderRadius: 12, padding: "1rem 1.1rem",
         }}>
-          <p style={{ fontSize: "0.78rem", color: "rgba(240,244,255,0.5)", lineHeight: 1.65, margin: 0, fontStyle: "italic" }}>
+          <p style={{ fontSize: "0.78rem", color: "rgba(var(--ink-rgb),0.66)", lineHeight: 1.65, margin: 0, fontStyle: "italic" }}>
             {note}
           </p>
         </div>
@@ -324,24 +324,24 @@ function FlowConnector({ label, text }: { label: string; text: string }) {
       padding: "1.25rem 0",
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <div style={{ width: 40, height: 1, background: "linear-gradient(90deg, transparent, rgba(0,212,170,0.4))" }} />
+        <div style={{ width: 40, height: 1, background: "linear-gradient(90deg, transparent, rgba(var(--haiti-blue-rgb),0.4))" }} />
         <div style={{
           display: "flex", alignItems: "center", gap: "0.5rem",
           fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.14em",
           textTransform: "uppercase", color: "var(--labo-accent-teal)", opacity: 0.7,
         }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 5v14M5 12l7 7 7-7" stroke="#00d4aa" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M12 5v14M5 12l7 7 7-7" stroke="var(--haiti-blue)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           {label}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 5v14M5 12l7 7 7-7" stroke="#00d4aa" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M12 5v14M5 12l7 7 7-7" stroke="var(--haiti-blue)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-        <div style={{ width: 40, height: 1, background: "linear-gradient(90deg, rgba(0,212,170,0.4), transparent)" }} />
+        <div style={{ width: 40, height: 1, background: "linear-gradient(90deg, rgba(var(--haiti-blue-rgb),0.4), transparent)" }} />
       </div>
       <p style={{
-        fontSize: "0.78rem", color: "rgba(240,244,255,0.35)", textAlign: "center",
+        fontSize: "0.78rem", color: "rgba(var(--ink-rgb),0.66)", textAlign: "center",
         fontStyle: "italic", maxWidth: 480, margin: 0, lineHeight: 1.6,
       }}>
         {text}
@@ -362,8 +362,8 @@ function EthicsBanner({
   return (
     <div style={{
       position: "relative",
-      background: "linear-gradient(135deg, rgba(0,212,170,0.06) 0%, rgba(108,99,255,0.06) 50%, rgba(0,212,170,0.04) 100%)",
-      border: "1px solid rgba(0,212,170,0.2)",
+      background: "linear-gradient(135deg, rgba(var(--haiti-blue-rgb),0.06) 0%, rgba(var(--haiti-red-rgb),0.06) 50%, rgba(var(--haiti-blue-rgb),0.04) 100%)",
+      border: "1px solid rgba(var(--haiti-blue-rgb),0.2)",
       borderRadius: 24,
       padding: "2.5rem 2.5rem 2rem",
       overflow: "hidden",
@@ -377,15 +377,15 @@ function EthicsBanner({
       {/* Background glow */}
       <div aria-hidden="true" style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(0,212,170,0.08) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(var(--haiti-blue-rgb),0.08) 0%, transparent 70%)",
       }} />
 
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}>
         <div style={{
           width: 44, height: 44, borderRadius: 12,
-          background: "linear-gradient(135deg, rgba(0,212,170,0.2), rgba(108,99,255,0.2))",
-          border: "1px solid rgba(0,212,170,0.3)",
+          background: "linear-gradient(135deg, rgba(var(--haiti-blue-rgb),0.2), rgba(var(--haiti-red-rgb),0.2))",
+          border: "1px solid rgba(var(--haiti-blue-rgb),0.3)",
           display: "flex", alignItems: "center", justifyContent: "center",
           flexShrink: 0,
         }}>
@@ -400,7 +400,7 @@ function EthicsBanner({
           </p>
           <h3 style={{
             fontFamily: "var(--font-display)", fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
-            fontWeight: 800, color: "var(--labo-text)", margin: 0, letterSpacing: "-0.02em",
+            fontWeight: 600, color: "var(--labo-text)", margin: 0, letterSpacing: "-0.02em",
           }}>
             {ethicsTitle}
           </h3>
@@ -425,11 +425,11 @@ function EthicsBanner({
           return (
             <div key={pillar.label} style={{
               display: "flex", alignItems: "center", gap: "0.6rem",
-              background: "rgba(0,212,170,0.05)", border: "1px solid rgba(0,212,170,0.12)",
+              background: "rgba(var(--haiti-blue-rgb),0.05)", border: "1px solid rgba(var(--haiti-blue-rgb),0.12)",
               borderRadius: 10, padding: "0.7rem 0.9rem",
             }}>
               <PillarIcon size={15} color={teal} />
-              <span style={{ fontSize: "0.78rem", color: "rgba(240,244,255,0.7)", lineHeight: 1.4 }}>
+              <span style={{ fontSize: "0.78rem", color: "rgba(var(--ink-rgb),0.7)", lineHeight: 1.4 }}>
                 {pillar.label}
               </span>
             </div>
@@ -493,12 +493,12 @@ export default function Highlights({
   const poleSectors  = splitDot(sPoleSectors) ?? (t.raw("poleSectors") as string[]);
   const ethicsPillars = t.raw("ethicsPillars") as EthicsPillar[];
 
-  const teal = "#00d4aa";
-  const tealBg = "rgba(0,212,170,0.1)";
-  const tealBorder = "rgba(0,212,170,0.2)";
-  const violet = "#6c63ff";
-  const violetBg = "rgba(108,99,255,0.1)";
-  const violetBorder = "rgba(108,99,255,0.2)";
+  const teal = "var(--haiti-blue)";
+  const tealBg = "rgba(var(--haiti-blue-rgb),0.1)";
+  const tealBorder = "rgba(var(--haiti-blue-rgb),0.2)";
+  const violet = "var(--haiti-red)";
+  const violetBg = "rgba(var(--haiti-red-rgb),0.1)";
+  const violetBorder = "rgba(var(--haiti-red-rgb),0.2)";
 
   return (
     <section
@@ -514,8 +514,8 @@ export default function Highlights({
       <div aria-hidden="true" style={{
         position: "absolute", inset: 0, pointerEvents: "none",
         background:
-          "radial-gradient(ellipse 55% 40% at 15% 20%, rgba(0,212,170,0.06) 0%, transparent 60%)," +
-          "radial-gradient(ellipse 50% 35% at 85% 70%, rgba(108,99,255,0.06) 0%, transparent 60%)",
+          "radial-gradient(ellipse 55% 40% at 15% 20%, rgba(var(--haiti-blue-rgb),0.06) 0%, transparent 60%)," +
+          "radial-gradient(ellipse 50% 35% at 85% 70%, rgba(var(--haiti-red-rgb),0.06) 0%, transparent 60%)",
       }} />
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
@@ -533,7 +533,7 @@ export default function Highlights({
           </div>
           <h2 style={{
             fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-            fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 1.0,
+            fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1.0,
             color: "var(--labo-text)", margin: "0 0 1.25rem",
           }}>
             {t("sectionTitle")}

@@ -49,3 +49,20 @@ export function resolveNavItems<T extends { href: string }>(items: T[]): (T & { 
     .filter((item) => !isRemovedNavHref(item.href))
     .map((item) => ({ ...item, href: resolveNavHref(item.href) }));
 }
+
+/**
+ * Le menu Sanity peut manquer de libellés EN/HT (repli sur le français) : hors FR, les liens connus sont
+ * relibellés depuis next-intl (`nav.*`) ; tout autre lien garde son libellé CMS.
+ */
+export function localizeNavLabel(
+  href: string,
+  label: string,
+  locale: string,
+  t: (key: "home" | "solutions" | "news") => string,
+) {
+  if (locale !== "ht") return label;
+  if (href === "/") return t("home");
+  if (href === "/axes-de-recherche") return t("solutions");
+  if (href === "/#actualites") return t("news");
+  return label;
+}

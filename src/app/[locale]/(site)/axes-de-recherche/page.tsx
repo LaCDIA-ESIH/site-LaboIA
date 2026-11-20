@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 
 import Highlights from "@/components/home/highlights";
-import NeuralHeroBackground from "@/components/shared/neural-hero-background";
 import { ProjectCard } from "@/components/cards/cards";
 import { sanityFetch } from "@/lib/sanity/client";
 import { getServerLocale } from "@/lib/i18n-server";
@@ -29,6 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       fr: localizedPath("/axes-de-recherche", "fr"),
       en: localizedPath("/axes-de-recherche", "en"),
+      ht: localizedPath("/axes-de-recherche", "ht"),
     },
   });
 }
@@ -50,18 +50,6 @@ export default async function SolutionsPage() {
     <main>
       {/* Hero Section */}
       <section className="page-hero page-hero-dark">
-        <NeuralHeroBackground />
-        {/* Halo teal */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute", top: "20%", right: "10%",
-            width: "28rem", height: "28rem", borderRadius: "50%",
-            background: "radial-gradient(ellipse, rgba(0,229,195,0.12) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }}
-        />
-
         <div className="container" style={{ position: "relative" }}>
           {solutionsPage.heroBadge && (
             <div className="hero-badge" style={{ display: "inline-flex", marginBottom: "2rem" }}>
@@ -76,7 +64,7 @@ export default async function SolutionsPage() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              fontWeight: 800,
+              fontWeight: 600,
               letterSpacing: "-0.02em",
               lineHeight: 1.05,
               color: "var(--color-text-white)",
@@ -154,7 +142,7 @@ export default async function SolutionsPage() {
                 className="card card-hover" style={{padding:'2rem', animationDelay: `${idx * 100}ms`}}
               >
                 <div className="card-accent-top" />
-                <div style={{marginBottom:'1rem', display:'flex', height:'3rem', width:'3rem', alignItems:'center', justifyContent:'center', borderRadius:'0.75rem', background:'#ecfeff', color:'#0891b2'}}>
+                <div style={{marginBottom:'1rem', display:'flex', height:'3rem', width:'3rem', alignItems:'center', justifyContent:'center', borderRadius:'0.75rem', background:'#ecfeff', color:'var(--haiti-blue)'}}>
                   <span style={{fontSize:'1.5rem', fontWeight:700}}>{idx + 1}</span>
                 </div>
                 <h3 style={{fontSize:'1.25rem', fontWeight:700, color:'#0f172a', marginBottom:'0.75rem'}}>{step.title}</h3>
@@ -183,7 +171,7 @@ export default async function SolutionsPage() {
                 key={solution._id}
                 className="card card-hover" style={{padding:'2rem', animationDelay: `${idx * 100}ms`}}
               >
-                <div className="card-accent-top" style={{background:'linear-gradient(to right, #14b8a6, #06b6d4)'}} />
+                <div className="card-accent-top" style={{background:'linear-gradient(to right, var(--haiti-blue), var(--haiti-blue))'}} />
                 {solution.icon ? (
                   <span className="badge badge-cyan" style={{marginBottom:'1rem', textTransform:'uppercase', letterSpacing:'0.05em'}}>
                     {solution.icon}
@@ -223,7 +211,7 @@ export default async function SolutionsPage() {
                   {featuredUseCase.benefits.map((benefit) => (
                     <li key={benefit} style={{display:'flex', alignItems:'flex-start', gap:'0.75rem'}}>
                       <div style={{marginTop:'0.375rem', display:'flex', height:'1.25rem', width:'1.25rem', alignItems:'center', justifyContent:'center', borderRadius:'9999px', background:'rgba(20,184,166,0.1)'}}>
-                        <span style={{height:'0.5rem', width:'0.5rem', borderRadius:'9999px', background:'#14b8a6'}} aria-hidden />
+                        <span style={{height:'0.5rem', width:'0.5rem', borderRadius:'9999px', background:'var(--haiti-blue)'}} aria-hidden />
                       </div>
                       <span style={{fontSize:'1rem', color:'#334155', lineHeight:1.7}}>{benefit}</span>
                     </li>
@@ -233,7 +221,7 @@ export default async function SolutionsPage() {
             </div>
             <div className="card gradient-card-bg" style={{position:'relative', borderRadius:'1.5rem', padding:'2rem', boxShadow:'var(--shadow-lg)'}}>
               <div style={{position:'absolute', inset:0, background:'radial-gradient(circle at 20% 20%, rgba(6,182,212,0.08), transparent 55%)'}} />
-              <div className="card-accent-top" style={{background:'linear-gradient(to right, #14b8a6, #06b6d4)'}} />
+              <div className="card-accent-top" style={{background:'linear-gradient(to right, var(--haiti-blue), var(--haiti-blue))'}} />
               <div style={{position:'relative'}}>
                 <p style={{fontSize:'1rem', fontWeight:700, color:'#0f172a', marginBottom:'1rem'}}>
                   {solutionsPage.flowTitle}
@@ -244,7 +232,7 @@ export default async function SolutionsPage() {
                 <div style={{display:'flex', flexDirection:'column', gap:'1rem'}}>
                   {solutionsPage.flowSteps?.map((step, idx) => (
                     <div key={`${step}-${idx}`} style={{display:'flex', alignItems:'center', gap:'0.75rem'}}>
-                      <div style={{display:'flex', height:'2rem', width:'2rem', alignItems:'center', justifyContent:'center', borderRadius:'0.5rem', background:'#ecfeff', color:'#0891b2'}}>
+                      <div style={{display:'flex', height:'2rem', width:'2rem', alignItems:'center', justifyContent:'center', borderRadius:'0.5rem', background:'#ecfeff', color:'var(--haiti-blue)'}}>
                         <span style={{fontSize:'0.875rem', fontWeight:700}}>{idx + 1}</span>
                       </div>
                       <span style={{fontSize:'0.875rem', fontWeight:600, textTransform:'uppercase', letterSpacing:'0.05em', color:'#475569'}}>
@@ -276,7 +264,7 @@ export default async function SolutionsPage() {
                 key={sector._id}
                 className="card card-hover gradient-card-bg" style={{padding:'1rem 1.5rem', textAlign:'center', fontSize:'1rem', fontWeight:500, color:'#334155', animationDelay: `${idx * 50}ms`}}
               >
-                <div className="card-accent-top" style={{height:'2px', background:'linear-gradient(to right, #14b8a6, #06b6d4)', opacity:0, transition:'opacity 0.3s'}} />
+                <div className="card-accent-top" style={{height:'2px', background:'linear-gradient(to right, var(--haiti-blue), var(--haiti-blue))', opacity:0, transition:'opacity 0.3s'}} />
                 {sector.name}
               </div>
             ))}

@@ -73,7 +73,7 @@ export const genericPageBySlugQuery = groq`
           note,
           noteIntl,
           status
-        }[status == "confirmed"],
+        }[status in ["confirmed", "published"]],
         "kpis": null
       }
     }
@@ -234,7 +234,7 @@ export const institutionalPageBySlugQuery = groq`
 `;
 
 export const kpiListQuery = groq`
-  *[_type == "kpi" && status == "confirmed"] | order(coalesce(labelIntl[$locale], label) asc){
+  *[_type == "kpi" && status in ["confirmed", "published"]] | order(coalesce(labelIntl[$locale], label) asc){
     _id,
     key,
     "label": coalesce(labelIntl[$locale], label),

@@ -1,4 +1,14 @@
 {
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you are looking for does not exist or has moved.",
+    "cta": "Back to home"
+  },
+  "brand": {
+    "carriedBy": "Hosted by",
+    "esihName": "École Supérieure d'Infotronique d'Haïti (ESIH)",
+    "descriptor": "Caribbean Laboratory for Data Science and Artificial Intelligence"
+  },
   "nav": {
     "home": "Home",
     "about": "About",
@@ -35,7 +45,9 @@
     "descriptionFallback": "Applied research in artificial intelligence and data science serving Caribbean communities.",
     "contactCtaLabel": "Write to the lab",
     "location": "Haiti · Caribbean",
+    "address": "#29, deuxième ruelle Nazon, Port-au-Prince, Haiti",
     "responseTime": "Reply within 3 to 5 business days",
+    "partners": "Partners",
     "manageCookies": "Manage cookie settings"
   },
   "common": {
@@ -76,31 +88,16 @@
       "titleLine3": "Caribbean,",
       "titleLine4": "responsible.",
       "subtitle": "Research, innovation and artificial intelligence serving major scientific and societal challenges.",
-      "primaryLabel": "Collaborate with the lab",
-      "secondaryLabel": "Our scientific architecture",
-      "canvasLabel": "Caribbean neural network",
-      "scrollHint": "scroll"
-    },
-    "ticker": {
-      "ariaLabel": "Research areas",
-      "items": [
-        "Artificial Intelligence",
-        "Data Science",
-        "Applied Research",
-        "Computer Vision",
-        "Responsible AI",
-        "Machine Learning",
-        "Haiti · Caribbean",
-        "Multi-Agent Systems",
-        "RAG & LLM",
-        "Digital Agriculture",
-        "Health & AI",
-        "AI Governance",
-        "Deep Learning",
-        "Creole NLP",
-        "Data Engineering",
-        "ESIH · LaCDIA"
-      ]
+      "kicker": "Research laboratory hosted by ESIH",
+      "ctaScience": "Our scientific architecture",
+      "ctaNews": "Latest news",
+      "factsLabel": "The laboratory at a glance",
+      "facts": [
+        { "value": "2025", "label": "Year founded" },
+        { "value": "2", "label": "Research axes" },
+        { "value": "1", "label": "Valorisation hub" }
+      ],
+      "nameLabel": "What LaCDIA stands for"
     },
     "kpis": {
       "sectionLabel": "Key figures",
@@ -271,6 +268,12 @@
           "label": "Areas of expertise"
         }
       ]
+    },
+    "institution": {
+      "label": "Host institution",
+      "title": "An ESIH initiative, rooted in Haiti",
+      "body": "LaCDIA is hosted by the École Supérieure d'Infotronique d'Haïti, which provides its institutional and legal grounding. The laboratory's scientific direction answers to its own governance bodies.",
+      "cta": "Discover ESIH"
     },
     "partners": {
       "becomePartner": "Become a partner",

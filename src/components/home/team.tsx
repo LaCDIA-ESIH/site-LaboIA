@@ -46,12 +46,12 @@ type CategoryMeta = {
 // because they're suffixed with an alpha channel below (e.g. `color + "22"`),
 // which var() cannot do.
 const CATEGORY_META: CategoryMeta[] = [
-  { icon: GraduationCap, color: "#00b894" },
-  { icon: Globe, color: "#4f46e5" },
-  { icon: Users, color: "#00b894" },
-  { icon: Database, color: "#4f46e5" },
-  { icon: Building2, color: "#00b894" },
-  { icon: Sparkles, color: "#4f46e5" },
+  { icon: GraduationCap, color: "var(--haiti-blue)" },
+  { icon: Globe, color: "var(--haiti-red)" },
+  { icon: Users, color: "var(--haiti-blue)" },
+  { icon: Database, color: "var(--haiti-red)" },
+  { icon: Building2, color: "var(--haiti-blue)" },
+  { icon: Sparkles, color: "var(--haiti-red)" },
 ];
 
 // The zigzag offset is keyed by column position (index % 3), never by raw
@@ -82,7 +82,7 @@ function TeamNode({ item, meta, columnIndex }: { item: TeamCategory; meta: Categ
               height: 40,
               borderRadius: 12,
               flexShrink: 0,
-              background: `radial-gradient(circle at 30% 30%, ${meta.color}22, ${meta.color}0d)`,
+              background: `radial-gradient(circle at 30% 30%, color-mix(in srgb, ${meta.color} 13%, transparent), color-mix(in srgb, ${meta.color} 5%, transparent))`,
               border: "1px solid " + meta.color + "33",
               display: "flex",
               alignItems: "center",
@@ -112,7 +112,7 @@ function TeamNode({ item, meta, columnIndex }: { item: TeamCategory; meta: Categ
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "0.98rem",
-            fontWeight: 700,
+            fontWeight: 600,
             color: "var(--tech-text)",
             marginBottom: "0.4rem",
             lineHeight: 1.3,
@@ -154,7 +154,7 @@ export default function Team({ sectionLabel, title, intro, note, categories, sta
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.75rem,3.2vw,2.75rem)",
-                fontWeight: 900,
+                fontWeight: 600,
                 letterSpacing: "-0.03em",
                 lineHeight: 1.05,
                 color: "var(--tech-text)",
@@ -194,7 +194,7 @@ export default function Team({ sectionLabel, title, intro, note, categories, sta
                 style={{
                   fontFamily: "var(--font-display)",
                   fontSize: "2.1rem",
-                  fontWeight: 800,
+                  fontWeight: 600,
                   lineHeight: 1,
                   marginBottom: "0.4rem",
                   backgroundImage: "linear-gradient(135deg, var(--tech-accent-teal), var(--tech-accent-violet))",

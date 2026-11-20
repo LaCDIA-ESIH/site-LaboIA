@@ -31,6 +31,43 @@ export const isSanityConfigured = getSanityMissingEnv().length === 0;
 
 export const sanityClient = isSanityConfigured ? createClient(sanityConfig) : null;
 
+const LOCALE_KEYS = new Set(["fr", "en", "ht"]);
+
+/**
+ * Une valeur « localisée » brute ({ fr, en, ht? }) dont les entrées sont des
+ * chaînes ou des tableaux (texte, blocs) — par opposition à `slugIntl`, dont
+ * les entrées sont des objets `{ current }` et que l'on ne doit pas toucher.
+ */
+function isRawLocalized(value: object): value is Record<string, unknown> {
+  const entries = Object.entries(value);
+  return (
+    entries.length > 0 &&
+    entries.every(
+      ([key, v]) => LOCALE_KEYS.has(key) && (v === null || typeof v === "string" || Array.isArray(v)),
+    )
+  );
+}
+
+/**
+ * Le contenu éditorial n'est saisi qu'en FR/EN : pour `ht`, plusieurs requêtes
+ * GROQ retombent sur l'objet localisé complet quand la clé `ht` est absente.
+ * On le réduit ici à la meilleure valeur disponible (ht → fr → en) pour ne
+ * jamais remettre un objet à un composant qui attend du texte.
+ */
+function collapseLocalized<T>(value: T, locale: string): T {
+  if (Array.isArray(value)) return value.map((item) => collapseLocalized(item, locale)) as T;
+  if (value && typeof value === "object") {
+    if (isRawLocalized(value)) {
+      const raw = value as Record<string, unknown>;
+      return (raw[locale] ?? raw.fr ?? raw.en ?? null) as T;
+    }
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([k, v]) => [k, collapseLocalized(v, locale)]),
+    ) as T;
+  }
+  return value;
+}
+
 export async function sanityFetch<T>(
   query: string,
   params: Record<string, unknown>,
@@ -38,5 +75,6 @@ export async function sanityFetch<T>(
 ) {
   if (!isSanityConfigured) return fallback;
   if (!sanityClient) return fallback;
-  return sanityClient.fetch<T>(query, params);
+  const result = await sanityClient.fetch<T>(query, params);
+  return params.locale === "ht" ? collapseLocalized(result, "ht") : result;
 }

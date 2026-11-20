@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "check:routes": "node scripts/check-routes.mjs",
+    "cms:fix": "node scripts/fix-cms-content.mjs",
     "sanity:seed": "node scripts/sanity-seed.mjs",
     "translate": "node scripts/auto-translate.mjs",
     "translate:en": "node scripts/auto-translate.mjs --target en",

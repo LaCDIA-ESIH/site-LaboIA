@@ -43,13 +43,13 @@ type SolutionIconProps = {
   strokeWidth?: number;
 };
 
-export function SolutionIcon({ name, size = 20, color = "#00b894", strokeWidth = 1.5 }: SolutionIconProps) {
+export function SolutionIcon({ name, size = 20, color = "var(--haiti-blue)", strokeWidth = 1.5 }: SolutionIconProps) {
   const Icon = SOLUTION_ICONS[name];
   if (!Icon) return null;
   return <Icon size={size} color={color} strokeWidth={strokeWidth} aria-hidden="true" />;
 }
 
-export function SectorIcon({ name, size = 16, color = "#00b894", strokeWidth = 1.5 }: SolutionIconProps) {
+export function SectorIcon({ name, size = 16, color = "var(--haiti-blue)", strokeWidth = 1.5 }: SolutionIconProps) {
   const Icon = SECTOR_ICONS[name];
   if (!Icon) return null;
   return <Icon size={size} color={color} strokeWidth={strokeWidth} aria-hidden="true" />;

@@ -7,6 +7,7 @@ export type SanitySlug = {
 export type LocalizedSlug = {
   fr?: SanitySlug;
   en?: SanitySlug;
+  ht?: SanitySlug;
 };
 
 export type SanityImage = {

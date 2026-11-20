@@ -50,6 +50,7 @@ const localeString = defineType({
   fields: [
     defineField({ name: "fr", type: "string", title: "FR" }),
     defineField({ name: "en", type: "string", title: "EN" }),
+    defineField({ name: "ht", type: "string", title: "HT (Kreyòl)" }),
   ],
 });
 
@@ -60,6 +61,7 @@ const localeText = defineType({
   fields: [
     defineField({ name: "fr", type: "text", rows: 4, title: "FR" }),
     defineField({ name: "en", type: "text", rows: 4, title: "EN" }),
+    defineField({ name: "ht", type: "text", rows: 4, title: "HT (Kreyòl)" }),
   ],
 });
 
@@ -70,6 +72,7 @@ const localeBlockContent = defineType({
   fields: [
     defineField({ name: "fr", type: "blockContent", title: "FR" }),
     defineField({ name: "en", type: "blockContent", title: "EN" }),
+    defineField({ name: "ht", type: "blockContent", title: "HT (Kreyòl)" }),
   ],
 });
 
@@ -80,6 +83,7 @@ const localeStringList = defineType({
   fields: [
     defineField({ name: "fr", type: "array", of: [{ type: "string" }], title: "FR" }),
     defineField({ name: "en", type: "array", of: [{ type: "string" }], title: "EN" }),
+    defineField({ name: "ht", type: "array", of: [{ type: "string" }], title: "HT (Kreyòl)" }),
   ],
 });
 

@@ -1,0 +1,240 @@
+{
+  "notFound": {
+    "title": "Paj la pa jwenn",
+    "body": "Paj w ap chèche a pa egziste oswa yo deplase l.",
+    "cta": "Retounen nan akèy"
+  },
+  "brand": {
+    "carriedBy": "Pòte pa",
+    "esihName": "École Supérieure d'Infotronique d'Haïti (ESIH)",
+    "descriptor": "Laboratwa Karayibeyen Syans Done ak Entèlijans Atifisyèl"
+  },
+  "nav": {
+    "home": "Akèy",
+    "news": "Nouvèl",
+    "solutions": "Aks rechèch"
+  },
+  "header": {
+    "tagline": "Laboratwa inovasyon ak rechèch aplike nan IA ak syans done",
+    "openMenu": "Louvri meni an",
+    "closeMenu": "Fèmen meni an",
+    "menu": "Meni",
+    "navigation": "Navigasyon"
+  },
+  "footer": {
+    "legalNotice": "Mansyon legal",
+    "privacy": "Politik konfidansyalite",
+    "cookies": "Politik cookies",
+    "terms": "Kondisyon itilizasyon",
+    "copyright": "Tout dwa rezève.",
+    "navigation": "Navigasyon",
+    "contact": "Kontak",
+    "legal": "Legal",
+    "tagline": "Ayiti · Karayib · Rechèch IA",
+    "nameFallback": "Laboratwa Karayibeyen Syans Done ak Entèlijans Atifisyèl",
+    "descriptionFallback": "Rechèch aplike nan entèlijans atifisyèl ak syans done pou sèvi kominote karayibeyen yo.",
+    "contactCtaLabel": "Ekri laboratwa a",
+    "location": "Ayiti · Karayib",
+    "address": "#29, dezyèm ri Nazon, Pòtoprens, Ayiti",
+    "responseTime": "Repons nan 3 a 5 jou ouvrab",
+    "partners": "Patnè",
+    "manageCookies": "Jere cookies mwen yo"
+  },
+  "common": {
+    "learnMore": "Aprann plis",
+    "seeAll": "Wè tout",
+    "backHome": "Retounen nan akèy",
+    "download": "Telechaje",
+    "share": "Pataje",
+    "search": "Chèche",
+    "filter": "Filtre",
+    "noResults": "Pa gen rezilta",
+    "loading": "Ap chaje...",
+    "readMore": "Li plis",
+    "close": "Fèmen",
+    "keywords": "Mo kle",
+    "backToNews": "Retounen nan nouvèl yo"
+  },
+  "cookies": {
+    "title": "Cookies",
+    "message": "Sit sa a itilize cookies pou mezire odyans ak pou fonksyone. Ou ka aksepte oswa refize cookies sa yo. Gade",
+    "policyLink": "politik cookies",
+    "accept": "Aksepte",
+    "reject": "Refize"
+  },
+  "home": {
+    "hero": {
+      "labLines": [[{"t": "La", "hi": true}, {"t": "boratwa"}], [{"t": "K", "hi": true}, {"t": "arayibeyen"}], [{"t": "Syans "}, {"t": "D", "hi": true}, {"t": "one"}], [{"t": "ak "}, {"t": "E", "hi": true}, {"t": "ntèlijans "}, {"t": "A", "hi": true}, {"t": "tifisyèl"}]],
+      "labAria": "Laboratwa Karayibeyen Syans Done ak Entèlijans Atifisyèl",
+      "badge": "IA · Rechèch · Inovasyon",
+      "titleLine1": "Soti nan done",
+      "titleLine2": "rive nan konesans —",
+      "titleLine3": "karayibeyen,",
+      "titleLine4": "responsab.",
+      "subtitle": "Rechèch, inovasyon ak entèlijans atifisyèl pou ede rezoud gwo defi syantifik ak sosyete a.",
+      "kicker": "Laboratwa rechèch ESIH pòte",
+      "ctaScience": "Achitekti syantifik nou",
+      "ctaNews": "Dènye nouvèl yo",
+      "factsLabel": "Laboratwa a an ti kras",
+      "facts": [
+        { "value": "2025", "label": "Ane fondasyon" },
+        { "value": "2", "label": "Aks rechèch" },
+        { "value": "1", "label": "Pòl valorizasyon" }
+      ],
+      "nameLabel": "Sa LaCDIA vle di"
+    },
+    "kpis": {
+      "sectionLabel": "Chif kle yo",
+      "updated": "Dènye mizajou :"
+    },
+    "highlights": {
+      "sectionLabel": "Achitekti syantifik 2026–2030",
+      "sectionTitle": "De aks rechèch, yon pòl valorizasyon",
+      "sectionIntro": "Devlopman kolaboratif konpetans syantifik ak teknik nan entèlijans atifisyèl ak syans done pou devlopman dirab Karayib la.",
+      "axe1Label": "AKS 01",
+      "axe1Title": "Fondman, metòd ak solidite IA",
+      "axe1Description": "Baz metodolojik laboratwa a — konsevwa metòd ki pèmèt sistèm yo aprann, rezone ak jeneralize avèk solidite, menm lè done yo ra, bwi oswa diferan.",
+      "axe1Keywords": [
+        "Aprantisaj oto-sipèvize",
+        "Solidite & jeneralizasyon",
+        "Modèl ekonòm",
+        "Eksplikabilite & odit",
+        "Diminye patipri",
+        "Rezònman nan ensètitid"
+      ],
+      "axe1Objectives": "Devlope nouvo algoritm efikas ak kèk done sèlman · Etidye solidite ak jeneralizasyon · Konsevwa modèl ki adapte ak resous limite · Devlope metòd eksplikasyon epi mezire patipri",
+      "axe2Label": "AKS 02",
+      "axe2Title": "IA pou done konplèks ak sistèm nan mond reyèl la",
+      "axe2Description": "Ki jan pou adapte, konbine ak evalye metòd IA devan konpleksite mond reyèl la — done miltimodal, sistèm dinamik, anviwònman ki gen kalite divès.",
+      "axe2Keywords": [
+        "Done miltimodal & fizyon",
+        "Deteksyon & segmantasyon",
+        "Èd nan pran desizyon",
+        "Modelizasyon & prediksyon",
+        "Validasyon sou teren",
+        "Transfè ant domèn"
+      ],
+      "axe2Objectives": "Aprann apati done ki ra, ki gen bwi, ki pa konplè · Devlope sistèm èd nan pran desizyon ki adapte ak kontèks la · Evalye sistèm yo nan kondisyon reyèl · Entegre konesans domèn nan",
+      "poleLabel": "PÒL",
+      "poleTitle": "Valorizasyon syantifik ak fòmasyon",
+      "poleDescription": "Entèfas ant laboratwa a ak mond sosyo-ekonomik la. Pòl la valorize epi transfere konesans ki soti nan Aks 1 ak 2 bay òganizasyon yo, e li remonte bezwen reyèl yo kòm nouvo pwoblèm syantifik.",
+      "poleSectors": [
+        "Sante",
+        "Agrikilti",
+        "Edikasyon",
+        "Anviwònman",
+        "Sektè piblik",
+        "Ekspètiz & pwototip"
+      ],
+      "poleNote": "Sektè aplikasyon yo (sante, agrikilti, edikasyon, anviwònman…) depann de Pòl la — pa de tit aks yo — sa ki prezève yon achitekti syantifik jeneral ki dire.",
+      "flowLabel": "Bouk retwoaksyon",
+      "flowText": "Ka reyèl Pòl la idantifye yo nouri nouvo pwoblèm syantifik pou Aks 1 ak 2 an retou.",
+      "ethicsLabel": "Egzijans transvèsal",
+      "ethicsTitle": "Etik · Eksplikabilite · Sekirite · Gouvènans IA",
+      "ethicsText": "Etik IA pa yon aks apa : li antre nan chak nan de aks yo ak nan Pòl la, dapre sa sijè a mande. Chak pwojè gen yon evalyasyon patipri, yon dokimantasyon limit itilizasyon, epi, si sa nesesè, yon pwotokòl eksplikabilite ki adapte ak itilizatè final yo.",
+      "ethicsPillars": [
+        { "icon": "shield", "label": "Evalyasyon & diminisyon patipri" },
+        { "icon": "eye", "label": "Eksplikabilite ki adapte ak itilizatè yo" },
+        { "icon": "lock", "label": "Sekirite done & sibè sekirite" },
+        { "icon": "scale", "label": "Gouvènans & trasabilite metòd yo" },
+        { "icon": "check", "label": "Validasyon etik & regleman" },
+        { "icon": "doc", "label": "Dokimantasyon limit itilizasyon" }
+      ],
+      "objectivesLabel": "Objektif priyorite",
+      "sectorsLabel": "Teren aplikasyon"
+    },
+    "team": {
+      "sectionLabel": "Ekip syantifik",
+      "sectionTitle": "Yon ekspètiz syantifik wo nivo, anrasine an Ayiti epi ouvè sou mond lan",
+      "sectionIntro": "LaCDIA rasanble yon dizèn pwofil syantifik ak teknik ki konplemantè — chèchè nasyonal ak entènasyonal, enjenyè espesyalize ak ekspè nan teknoloji k ap parèt — pou pote yon rechèch seryè nan entèlijans atifisyèl ki anrasine nan reyalite karayibeyen yo.",
+      "note": "Gen pwofil ki gen plizyè responsablite syantifik ak enstitisyonèl ; prezantasyon sa a montre konpetans laboratwa a mobilize olye yon òganigram fiks."
+    },
+    "institution": {
+      "label": "Enstitisyon ki pòte l",
+      "title": "Yon inisyativ ESIH, ki anrasine an Ayiti",
+      "body": "ESIH (École Supérieure d'Infotronique d'Haïti) se enstitisyon ki pòte LaCDIA ; se li ki garanti ankraj enstitisyonèl ak jiridik li. Direksyon syantifik laboratwa a depann de pwòp enstans gouvènans li yo.",
+      "cta": "Dekouvri ESIH"
+    },
+    "partners": {
+      "becomePartner": "Vin patnè",
+      "becomePartnerAria": "Vin patnè LaCDIA — kontakte nou"
+    },
+    "actualites": {
+      "badge": "Nouvèl",
+      "all": "Tout",
+      "external": "Sous ekstèn",
+      "noItems": "Pa gen nouvèl pou kounye a.",
+      "showAll": "Wè tout nouvèl yo",
+      "defaultTitle": "Dènye nouvèl yo",
+      "sourceLabel": "Sous",
+      "readLabel": "Li",
+      "articlesLabel": "atik"
+    },
+    "heroBadge": "Entèlijans Atifisyèl - Inovasyon - Rechèch Aplike",
+    "discoverLab": "Dekouvri solisyon nou yo",
+    "researchAxes": "Aks rechèch nou yo",
+    "introEyebrow": "Vizyon 2026–2030",
+    "introTitle": "Vin pòl referans Karayib la nan IA ak syans done",
+    "introBody": "Rekonèt pou kalite rechèch li yo, pètinans aplikasyon li yo, kontribisyon li nan fòmasyon syantifik ak angajman li pou yon inovasyon responsab.",
+    "kpisTitle": "Endikatè kle yo",
+    "kpisIntro": "Done chifre sou aktivite rechèch ak inovasyon nou yo",
+    "publicationsTitle": "Piblikasyon resan yo",
+    "publicationsIntro": "Atik, rapò ak kominikasyon ki dokimante avansman syantifik nou yo.",
+    "partnersTitle": "Patnè ak kolaborasyon",
+    "partnersIntro": "Nou travay ak enstitisyon akademik, piblik ak prive pou akselere enpak rechèch la.",
+    "partnersBadge": "Ou bezwen kolabore ? Kontakte nou.",
+    "eventLabel": "Evènman",
+    "eventLabelUpcoming": "Evènman k ap vini",
+    "projectLabel": "Pwojè",
+    "viewWebsite": "Gade sit la",
+    "partnerTypes": {
+      "partner": "Patnè",
+      "client": "Kliyan",
+      "media": "Medya",
+      "academic": "Akademik"
+    },
+    "intro": {
+      "foundedLabel": "Fonde an 2025"
+    }
+  },
+  "forms": {
+    "newsletter": {
+      "emailLabel": "Adrès imèl",
+      "emailPlaceholder": "imel@ou.com",
+      "consent": "Mwen dakò resevwa kominikasyon laboratwa a. Gade",
+      "privacy": "politik konfidansyalite",
+      "submit": "Abòne",
+      "loading": "Ap fèt…",
+      "success": "Mèsi ! Abònman ou nan bilten an anrejistre.",
+      "error": "Yon erè fèt. Tanpri eseye ankò."
+    },
+    "newsletterUnsubscribe": {
+      "emailLabel": "Adrès imèl",
+      "emailPlaceholder": "imel@ou.com",
+      "submit": "Dezabòne",
+      "loading": "Ap voye…",
+      "success": "Tcheke bwat imèl ou : nou fèk voye yon lyen konfimasyon ba ou.",
+      "error": "Nou pa t ka trete demann lan. Eseye ankò pita."
+    }
+  },
+  "values": {
+    "excellence": "Ekselans syantifik",
+    "innovation": "Inovasyon responsab",
+    "inclusivity": "Enklizivite",
+    "interdisciplinarity": "Entèdisiplinarite",
+    "openness": "Ouvèti"
+  },
+  "locale": {
+    "switchLanguage": "Chanje lang",
+    "currentLanguage": "Lang kounye a"
+  },
+  "pages": {
+    "solutions": {
+      "fallbackSummary": "Dekouvri sèvis ak solisyon entèlijans atifisyèl nou yo ki konkrè, teste epi pwouve."
+    },
+    "newsletter": {
+      "unsubscribeTitle": "Jere abònman mwen",
+      "unsubscribeIntro": "Mete adrès imèl ou pou dezabòne nan bilten LaCDIA. Nou pral voye yon lyen konfimasyon ba ou anvan dezabònman an fèt vre."
+    }
+  }
+}

@@ -34,6 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const enSlug = article.slugIntl?.en?.current ?? article.slug.current;
     entries.push({ url: buildUrl(`/actualites/${frSlug}`, "fr") });
     entries.push({ url: buildUrl(`/actualites/${enSlug}`, "en") });
+    entries.push({ url: buildUrl(`/actualites/${frSlug}`, "ht") });
   });
 
   events.forEach((event) => {
@@ -41,6 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const enSlug = event.slugIntl?.en?.current ?? event.slug.current;
     entries.push({ url: buildUrl(`/actualites/evenements/${frSlug}`, "fr") });
     entries.push({ url: buildUrl(`/actualites/evenements/${enSlug}`, "en") });
+    entries.push({ url: buildUrl(`/actualites/evenements/${frSlug}`, "ht") });
   });
 
   return entries;

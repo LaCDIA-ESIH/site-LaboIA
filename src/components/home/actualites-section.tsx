@@ -1,5 +1,6 @@
 "use client";
 
+import { formatDate as formatLocalizedDate } from "@/lib/i18n-pick";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
@@ -14,11 +15,11 @@ type Props = {
 };
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string }> = {
-  Recherche: { bg: "rgba(0,212,170,0.10)", text: "#00d4aa", border: "rgba(0,212,170,0.25)" },
-  Partenariat: { bg: "rgba(108,99,255,0.10)", text: "#8b85ff", border: "rgba(108,99,255,0.25)" },
-  Événement: { bg: "rgba(0,180,228,0.10)", text: "#00b4e4", border: "rgba(0,180,228,0.25)" },
+  Recherche: { bg: "rgba(var(--haiti-blue-rgb),0.10)", text: "var(--haiti-blue)", border: "rgba(var(--haiti-blue-rgb),0.25)" },
+  Partenariat: { bg: "rgba(var(--haiti-red-rgb),0.10)", text: "#8b85ff", border: "rgba(var(--haiti-red-rgb),0.25)" },
+  Événement: { bg: "rgba(0,180,228,0.10)", text: "var(--haiti-blue)", border: "rgba(0,180,228,0.25)" },
   Annonce: { bg: "rgba(255,186,0,0.10)", text: "#ffc947", border: "rgba(255,186,0,0.25)" },
-  default: { bg: "rgba(136,146,176,0.10)", text: "#8892b0", border: "rgba(136,146,176,0.20)" },
+  default: { bg: "rgba(var(--ink-rgb),0.10)", text: "var(--labo-text-muted)", border: "rgba(var(--ink-rgb),0.20)" },
 };
 
 function getCategoryStyle(cat?: string) {
@@ -31,18 +32,9 @@ function getCategoryStyle(cat?: string) {
   return CATEGORY_COLORS.default;
 }
 
-function formatDate(dateStr?: string, locale = "fr"): string {
+function formatDate(dateStr?: string, locale: Locale = "fr"): string {
   if (!dateStr) return "";
-  try {
-    return new Date(dateStr).toLocaleDateString(locale === "en" ? "en-GB" : "fr-FR", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      timeZone: "UTC",
-    });
-  } catch {
-    return dateStr;
-  }
+  return formatLocalizedDate(dateStr, locale, { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }) || dateStr;
 }
 
 function getHref(item: NewsListItem, locale: Locale) {
@@ -106,12 +98,12 @@ function FeaturedCard({ item, locale }: { item: NewsListItem; locale: Locale }) 
   const handleEnter = useCallback(() => {
     if (!ref.current) return;
     ref.current.style.transform = "translateY(-4px)";
-    ref.current.style.boxShadow = "0 28px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,212,170,0.18)";
+    ref.current.style.boxShadow = "0 28px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(var(--haiti-blue-rgb),0.18)";
   }, []);
   const handleLeave = useCallback(() => {
     if (!ref.current) return;
     ref.current.style.transform = "";
-    ref.current.style.boxShadow = "0 12px 40px rgba(0,0,0,0.32), 0 0 0 1px rgba(255,255,255,0.06)";
+    ref.current.style.boxShadow = "0 14px 34px -14px rgba(var(--ink-rgb),0.3), 0 0 0 1px rgba(var(--ink-rgb),0.06)";
   }, []);
 
   return (
@@ -132,9 +124,9 @@ function FeaturedCard({ item, locale }: { item: NewsListItem; locale: Locale }) 
         overflow: "hidden",
         minHeight: "var(--actu-card-minh, 400px)",
         padding: "var(--actu-card-pad, 2.5rem)",
-        background: "linear-gradient(135deg, rgba(0,212,170,0.08) 0%, rgba(108,99,255,0.12) 100%), #111827",
-        border: "1px solid rgba(255,255,255,0.06)",
-        boxShadow: "0 12px 40px rgba(0,0,0,0.32), 0 0 0 1px rgba(255,255,255,0.06)",
+        background: "linear-gradient(135deg, rgba(var(--haiti-blue-rgb),0.04) 0%, rgba(var(--haiti-red-rgb),0.05) 100%), var(--labo-surface)",
+        border: "1px solid rgba(var(--ink-rgb),0.06)",
+        boxShadow: "0 14px 34px -14px rgba(var(--ink-rgb),0.3), 0 0 0 1px rgba(var(--ink-rgb),0.06)",
         textDecoration: "none",
         color: "inherit",
         transition: "transform 0.28s ease, box-shadow 0.28s ease",
@@ -142,13 +134,13 @@ function FeaturedCard({ item, locale }: { item: NewsListItem; locale: Locale }) 
       }}
     >
       {/* Decorative blobs */}
-      <div aria-hidden="true" style={{ position: "absolute", top: -60, right: -60, width: 220, height: 220, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,212,170,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
-      <div aria-hidden="true" style={{ position: "absolute", bottom: -40, left: -40, width: 160, height: 160, borderRadius: "50%", background: "radial-gradient(circle, rgba(108,99,255,0.10) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div aria-hidden="true" style={{ position: "absolute", top: -60, right: -60, width: 220, height: 220, borderRadius: "50%", background: "radial-gradient(circle, rgba(var(--haiti-blue-rgb),0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div aria-hidden="true" style={{ position: "absolute", bottom: -40, left: -40, width: 160, height: 160, borderRadius: "50%", background: "radial-gradient(circle, rgba(var(--haiti-red-rgb),0.10) 0%, transparent 70%)", pointerEvents: "none" }} />
 
       {/* Grid pattern overlay */}
       <div aria-hidden="true" style={{
         position: "absolute", inset: 0,
-        backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+        backgroundImage: "linear-gradient(rgba(var(--ink-rgb),0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--ink-rgb),0.025) 1px, transparent 1px)",
         backgroundSize: "32px 32px",
         pointerEvents: "none",
       }} />
@@ -156,7 +148,7 @@ function FeaturedCard({ item, locale }: { item: NewsListItem; locale: Locale }) 
       {/* Top: category + date */}
       <div style={{ position: "absolute", top: "2rem", left: "var(--actu-card-pad, 2.5rem)", right: "var(--actu-card-pad, 2.5rem)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <CategoryPill category={item.category} label={item.categoryLabel} />
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", letterSpacing: "0.1em", color: "rgba(136,146,176,0.6)" }}>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", letterSpacing: "0.1em", color: "rgba(var(--ink-rgb),0.6)" }}>
           {formatDate(item.date, locale)}
         </span>
       </div>
@@ -167,11 +159,11 @@ function FeaturedCard({ item, locale }: { item: NewsListItem; locale: Locale }) 
         transform: "translate(-50%, -50%)",
         fontFamily: "var(--font-display)",
         fontSize: "clamp(var(--actu-wm-min, 8rem), 15vw, 14rem)",
-        fontWeight: 900,
+        fontWeight: 600,
         lineHeight: 1,
         letterSpacing: "-0.06em",
         color: "transparent",
-        WebkitTextStroke: "1px rgba(0,212,170,0.06)",
+        WebkitTextStroke: "1px rgba(var(--haiti-blue-rgb),0.06)",
         pointerEvents: "none",
         userSelect: "none",
         whiteSpace: "nowrap",
@@ -182,10 +174,10 @@ function FeaturedCard({ item, locale }: { item: NewsListItem; locale: Locale }) 
         <h3 style={{
           fontFamily: "var(--font-display)",
           fontSize: "clamp(1.35rem, 2.5vw, 1.9rem)",
-          fontWeight: 800,
+          fontWeight: 600,
           lineHeight: 1.15,
           letterSpacing: "-0.03em",
-          color: "var(--labo-text, #f0f4ff)",
+          color: "var(--labo-text, var(--ink))",
           marginBottom: "0.85rem",
         }}>
           {item.title}
@@ -194,7 +186,7 @@ function FeaturedCard({ item, locale }: { item: NewsListItem; locale: Locale }) 
           <p style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "0.9rem",
-            color: "rgba(136,146,176,0.8)",
+            color: "rgba(var(--ink-rgb),0.8)",
             lineHeight: 1.7,
             marginBottom: "1.5rem",
             display: "-webkit-box",
@@ -226,13 +218,13 @@ function CompactCard({ item, locale }: { item: NewsListItem; locale: Locale }) {
     if (!ref.current) return;
     ref.current.style.transform = "translateX(4px)";
     ref.current.style.borderColor = catStyle.border;
-    ref.current.style.background = "rgba(17,24,39,0.95)";
+    ref.current.style.background = "var(--labo-surface)";
   }, [catStyle.border]);
   const handleLeave = useCallback(() => {
     if (!ref.current) return;
     ref.current.style.transform = "";
-    ref.current.style.borderColor = "rgba(255,255,255,0.06)";
-    ref.current.style.background = "rgba(17,24,39,0.75)";
+    ref.current.style.borderColor = "rgba(var(--ink-rgb),0.06)";
+    ref.current.style.background = "var(--labo-surface)";
   }, []);
 
   return (
@@ -250,8 +242,8 @@ function CompactCard({ item, locale }: { item: NewsListItem; locale: Locale }) {
         gap: "0.75rem",
         padding: "1.4rem 1.5rem",
         borderRadius: 14,
-        background: "rgba(17,24,39,0.75)",
-        border: "1px solid rgba(255,255,255,0.06)",
+        background: "var(--labo-surface)",
+        border: "1px solid rgba(var(--ink-rgb),0.06)",
         backdropFilter: "blur(12px)",
         textDecoration: "none",
         color: "inherit",
@@ -270,7 +262,7 @@ function CompactCard({ item, locale }: { item: NewsListItem; locale: Locale }) {
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.5rem" }}>
         <CategoryPill category={item.category} label={item.categoryLabel} />
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.59rem", letterSpacing: "0.08em", color: "rgba(136,146,176,0.5)", flexShrink: 0 }}>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.59rem", letterSpacing: "0.08em", color: "rgba(var(--ink-rgb),0.66)", flexShrink: 0 }}>
           {formatDate(item.date, locale)}
         </span>
       </div>
@@ -278,10 +270,10 @@ function CompactCard({ item, locale }: { item: NewsListItem; locale: Locale }) {
       <h3 style={{
         fontFamily: "var(--font-display)",
         fontSize: "clamp(0.88rem, 1.2vw, 1.02rem)",
-        fontWeight: 700,
+        fontWeight: 600,
         lineHeight: 1.3,
         letterSpacing: "-0.02em",
-        color: "var(--labo-text, #f0f4ff)",
+        color: "var(--labo-text, var(--ink))",
         display: "-webkit-box",
         WebkitLineClamp: 2,
         WebkitBoxOrient: "vertical",
@@ -294,7 +286,7 @@ function CompactCard({ item, locale }: { item: NewsListItem; locale: Locale }) {
         <p style={{
           fontFamily: "Inter, sans-serif",
           fontSize: "0.78rem",
-          color: "rgba(136,146,176,0.65)",
+          color: "rgba(var(--ink-rgb),0.65)",
           lineHeight: 1.6,
           display: "-webkit-box",
           WebkitLineClamp: 2,
@@ -370,13 +362,13 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
       <div aria-hidden="true" style={{
         position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
         width: "80%", height: 1,
-        background: "linear-gradient(90deg, transparent, rgba(0,212,170,0.15), transparent)",
+        background: "linear-gradient(90deg, transparent, rgba(var(--haiti-blue-rgb),0.15), transparent)",
         pointerEvents: "none",
       }} />
       <div aria-hidden="true" style={{
         position: "absolute", top: "20%", right: "-10%",
         width: 500, height: 500, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(108,99,255,0.04) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(var(--haiti-red-rgb),0.04) 0%, transparent 70%)",
         pointerEvents: "none",
       }} />
 
@@ -402,8 +394,8 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
               <h2 style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
-                fontWeight: 900,
-                color: "var(--labo-text, #f0f4ff)",
+                fontWeight: 600,
+                color: "var(--labo-text, var(--ink))",
                 letterSpacing: "-0.03em",
                 lineHeight: 1.05,
                 margin: 0,
@@ -415,8 +407,8 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
               <h2 style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
-                fontWeight: 900,
-                color: "var(--labo-text, #f0f4ff)",
+                fontWeight: 600,
+                color: "var(--labo-text, var(--ink))",
                 letterSpacing: "-0.03em",
                 lineHeight: 1.05,
                 margin: 0,
@@ -425,7 +417,7 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
               </h2>
             )}
             {intro && (
-              <p style={{ marginTop: "0.75rem", fontSize: "0.95rem", color: "var(--labo-text-muted, #8892b0)", lineHeight: 1.7, maxWidth: "52ch" }}>
+              <p style={{ marginTop: "0.75rem", fontSize: "0.95rem", color: "var(--labo-text-muted, var(--labo-text-muted))", lineHeight: 1.7, maxWidth: "52ch" }}>
                 {intro}
               </p>
             )}
@@ -436,11 +428,11 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
             fontFamily: "var(--font-mono)",
             fontSize: "0.62rem",
             letterSpacing: "0.12em",
-            color: "rgba(136,146,176,0.35)",
+            color: "rgba(var(--ink-rgb),0.66)",
             textAlign: "right",
             lineHeight: 2,
           }}>
-            <div style={{ fontFamily: "var(--font-display)", fontSize: "2.5rem", fontWeight: 900, color: "rgba(0,212,170,0.15)", letterSpacing: "-0.05em", lineHeight: 1 }}>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: "2.5rem", fontWeight: 600, color: "rgba(var(--haiti-blue-rgb),0.15)", letterSpacing: "-0.05em", lineHeight: 1 }}>
               {String(filtered.length).padStart(2, "0")}
             </div>
             <div>{t("articlesLabel")}</div>
@@ -468,14 +460,14 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
                     padding: "0.35rem 0.9rem",
                     borderRadius: 9999,
                     border: isActive
-                      ? "1px solid " + (s?.border ?? "rgba(0,212,170,0.3)")
-                      : "1px solid rgba(255,255,255,0.08)",
+                      ? "1px solid " + (s?.border ?? "rgba(var(--haiti-blue-rgb),0.3)")
+                      : "1px solid rgba(var(--ink-rgb),0.08)",
                     background: isActive
-                      ? (s?.bg ?? "rgba(0,212,170,0.10)")
+                      ? (s?.bg ?? "rgba(var(--haiti-blue-rgb),0.10)")
                       : "transparent",
                     color: isActive
                       ? (s?.text ?? "var(--labo-accent-teal)")
-                      : "rgba(136,146,176,0.6)",
+                      : "rgba(var(--ink-rgb),0.6)",
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.62rem",
                     fontWeight: 600,
@@ -529,9 +521,9 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
                     gap: "0.5rem",
                     padding: "1.4rem",
                     borderRadius: 14,
-                    border: "1px dashed rgba(0,212,170,0.20)",
+                    border: "1px dashed rgba(var(--haiti-blue-rgb),0.20)",
                     background: "transparent",
-                    color: "rgba(0,212,170,0.6)",
+                    color: "rgba(var(--haiti-blue-rgb),0.6)",
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.68rem",
                     fontWeight: 600,
@@ -539,8 +531,8 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
                     cursor: "pointer",
                     transition: "all 0.2s ease",
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,212,170,0.4)"; (e.currentTarget as HTMLElement).style.color = "#00d4aa"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,212,170,0.20)"; (e.currentTarget as HTMLElement).style.color = "rgba(0,212,170,0.6)"; }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--haiti-blue-rgb),0.4)"; (e.currentTarget as HTMLElement).style.color = "var(--haiti-blue)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--haiti-blue-rgb),0.20)"; (e.currentTarget as HTMLElement).style.color = "rgba(var(--haiti-blue-rgb),0.6)"; }}
                 >
                   <span>+{rest.length - visibleRest.length}</span>
                   <ArrowIcon />
@@ -575,9 +567,9 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
                 gap: "0.6rem",
                 padding: "0.75rem 2rem",
                 borderRadius: 9999,
-                border: "1px solid rgba(0,212,170,0.25)",
+                border: "1px solid rgba(var(--haiti-blue-rgb),0.25)",
                 background: "transparent",
-                color: "#00d4aa",
+                color: "var(--haiti-blue)",
                 fontFamily: "var(--font-mono)",
                 fontSize: "0.72rem",
                 fontWeight: 600,
@@ -588,14 +580,14 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.background = "rgba(0,212,170,0.08)";
-                el.style.borderColor = "rgba(0,212,170,0.45)";
+                el.style.background = "rgba(var(--haiti-blue-rgb),0.08)";
+                el.style.borderColor = "rgba(var(--haiti-blue-rgb),0.45)";
                 el.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement;
                 el.style.background = "transparent";
-                el.style.borderColor = "rgba(0,212,170,0.25)";
+                el.style.borderColor = "rgba(var(--haiti-blue-rgb),0.25)";
                 el.style.transform = "";
               }}
             >
@@ -607,7 +599,7 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
 
         {/* Empty state */}
         {filtered.length === 0 && (
-          <div style={{ textAlign: "center", padding: "4rem 0", color: "rgba(136,146,176,0.5)", fontFamily: "var(--font-mono)", fontSize: "0.78rem" }}>
+          <div style={{ textAlign: "center", padding: "4rem 0", color: "rgba(var(--ink-rgb),0.66)", fontFamily: "var(--font-mono)", fontSize: "0.78rem" }}>
             {t("noItems")}
           </div>
         )}

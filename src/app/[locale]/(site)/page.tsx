@@ -1,6 +1,6 @@
 import Hero from "@/components/home/hero";
-import Ticker from "@/components/home/ticker";
 import Intro from "@/components/home/intro";
+import Institution from "@/components/home/institution";
 import Kpis from "@/components/home/kpis";
 import Highlights from "@/components/home/highlights";
 import GovernanceEthics from "@/components/home/governance-ethics";
@@ -23,6 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       fr: localizedPath("/", "fr"),
       en: localizedPath("/", "en"),
+      ht: localizedPath("/", "ht"),
     },
   });
 }
@@ -53,13 +54,13 @@ export default async function Home() {
         titleLine3={home.heroTitleLine3}
         titleLine4={home.heroTitleLine4}
       />
-      <Ticker />
       <Intro
         locale={locale}
         visionTitle={home.introTitle}
         visionBody={home.introBody}
         missionItems={home.missionItems}
       />
+      <Institution locale={locale} />
       <Highlights
         title={home.highlightsTitle}
         intro={home.highlightsIntro}

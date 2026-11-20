@@ -4,7 +4,7 @@ import { useTransition } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { type Locale } from "@/lib/i18n";
+import { type Locale, localeNames } from "@/lib/i18n";
 import { routing } from "@/i18n/routing";
 
 export default function LocaleSwitcher() {
@@ -32,6 +32,8 @@ export default function LocaleSwitcher() {
         return (
           <button
             key={loc}
+            lang={loc}
+            title={localeNames[loc]}
             type="button"
             onClick={() => switchLocale(loc)}
             disabled={isPending}

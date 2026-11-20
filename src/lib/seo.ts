@@ -7,6 +7,9 @@ import { getSiteUrl } from "@/lib/site-url";
 
 export const siteUrl = getSiteUrl();
 
+/** Image de partage par défaut (1200×630), servie depuis `public/og/`. */
+export const DEFAULT_OG_IMAGE = "/og/lacdia-og.png";
+
 type MetadataInput = {
   title?: string;
   description?: string;
@@ -29,7 +32,6 @@ export async function buildMetadata({
   const resolvedDescription = seo?.description ?? description ?? site.description;
   const fullTitle = resolvedTitle ? `${resolvedTitle} | ${site.shortName}` : site.name;
   const url = seo?.canonicalUrl ?? (path ? new URL(path, siteUrl).toString() : siteUrl);
-  const banner = site.banner;
   const ogTitle = seo?.openGraphTitle ? `${seo.openGraphTitle} | ${site.shortName}` : fullTitle;
   const ogDescription = seo?.openGraphDescription ?? resolvedDescription;
   const ogImage = seo?.openGraphImageUrl
@@ -39,17 +41,11 @@ export async function buildMetadata({
         height: seo.openGraphImageHeight,
         alt: seo.openGraphImageAlt ?? resolvedTitle ?? site.name,
       }
-    : banner?.url
-      ? {
-          url: banner.url,
-          width: banner.width,
-          height: banner.height,
-          alt: banner.alt ?? site.name,
-        }
-      : null;
+    : { url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: site.name };
 
   const metadata: Metadata = {
-    title: fullTitle,
+    // `absolute` : le gabarit du layout ajouterait sinon un second « | LaCDIA ».
+    title: { absolute: fullTitle },
     description: resolvedDescription,
     keywords: seo?.keywords,
     robots:
@@ -89,8 +85,9 @@ export async function buildMetadata({
   if (Object.values(resolvedAlternates).some(Boolean)) {
     metadata.alternates = {
       languages: {
-        ...(resolvedAlternates.fr ? { fr: resolvedAlternates.fr } : {}),
-        ...(resolvedAlternates.en ? { en: resolvedAlternates.en } : {}),
+        ...Object.fromEntries(
+          locales.flatMap((l) => (resolvedAlternates[l] ? [[l, resolvedAlternates[l] as string]] : [])),
+        ),
       },
     };
   }

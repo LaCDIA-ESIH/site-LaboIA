@@ -3,8 +3,9 @@
  *
  * fr : Français (langue par défaut)
  * en : English
+ * ht : Kreyòl ayisyen (créole haïtien)
  */
-export const locales = ["fr", "en"] as const;
+export const locales = ["fr", "en", "ht"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "fr";
 
@@ -12,12 +13,14 @@ export const defaultLocale: Locale = "fr";
 export const localeNames: Record<Locale, string> = {
   fr: "Français",
   en: "English",
+  ht: "Kreyòl ayisyen",
 };
 
 /** Drapeaux emoji pour affichage */
 export const localeFlags: Record<Locale, string> = {
   fr: "🇫🇷",
   en: "🇬🇧",
+  ht: "🇭🇹",
 };
 
 export function isLocale(value: string | undefined): value is Locale {
