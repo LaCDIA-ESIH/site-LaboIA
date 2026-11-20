@@ -9,6 +9,8 @@ import { useLocale, useTranslations } from "next-intl";
 import LocaleSwitcher from "@/components/layout/locale-switcher";
 import type { Navigation, SiteSettings } from "@/lib/sanity/types";
 import { localizeNavLabel, resolveNavItems } from "@/lib/nav";
+import { pick } from "@/lib/i18n-pick";
+import type { Locale } from "@/lib/i18n";
 
 function isActivePath(current: string, href: string) {
   if (href === "/") return current === "/";
@@ -86,7 +88,7 @@ export default function Header({
                 {tBrand("esihName")}
               </a>
             </span>
-            <span className="hidden shrink-0 sm:inline" style={{ opacity: 0.7 }}>Haïti · Caraïbes</span>
+            <span className="hidden shrink-0 sm:inline" style={{ opacity: 0.7 }}>{pick(locale as Locale, { fr: "Haïti · Caraïbes", en: "Haiti · Caribbean", ht: "Ayiti · Karayib" })}</span>
           </div>
         </div>
 

@@ -437,7 +437,7 @@
       "fullNamePlaceholder": "First Last",
       "email": "Email address",
       "emailPlaceholder": "your@email.com",
-      "organisation": "Organisation / Institution",
+      "organisation": "Organization / Institution",
       "organisationPlaceholder": "University, company, NGO…",
       "collabType": "Type of collaboration",
       "collabTypes": [
