@@ -60,7 +60,7 @@ export function localizeNavLabel(
   locale: string,
   t: (key: "home" | "solutions" | "news") => string,
 ) {
-  if (locale === "fr") return label;
+  if (locale !== "ht") return label;
   if (href === "/") return t("home");
   if (href === "/axes-de-recherche") return t("solutions");
   if (href === "/#actualites") return t("news");
