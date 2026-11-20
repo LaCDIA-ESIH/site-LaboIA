@@ -5,6 +5,7 @@ import Highlights from "@/components/home/highlights";
 import { ProjectCard } from "@/components/cards/cards";
 import { sanityFetch } from "@/lib/sanity/client";
 import { getServerLocale } from "@/lib/i18n-server";
+import { pick } from "@/lib/i18n-pick";
 import { localizedPath } from "@/lib/i18n";
 import { projectListQuery } from "@/lib/sanity/queries";
 import type { ProjectListItem } from "@/lib/sanity/types";
@@ -14,6 +15,16 @@ import { getSolutionsPageData } from "@/lib/cms";
 import { isRemovedNavHref } from "@/lib/nav";
 
 export const dynamic = "force-dynamic";
+
+// Libellés des pastilles de solutions (la donnée CMS n'est qu'une clé d'icône).
+const ICON_LABELS: Record<string, { fr: string; en: string; ht: string }> = {
+  chart: { fr: "Analyse", en: "Analytics", ht: "Analiz" },
+  automation: { fr: "Automatisation", en: "Automation", ht: "Otomatizasyon" },
+  chat: { fr: "Conversation", en: "Chat", ht: "Konvèsasyon" },
+  settings: { fr: "Personnalisation", en: "Customization", ht: "Pèsonalizasyon" },
+  network: { fr: "Multi-agents", en: "Multi-agent", ht: "Milti-ajan" },
+  document: { fr: "Documents", en: "Documents", ht: "Dokiman" },
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
@@ -174,7 +185,9 @@ export default async function SolutionsPage() {
                 <div className="card-accent-top" style={{background:'linear-gradient(to right, var(--haiti-blue), var(--haiti-blue))'}} />
                 {solution.icon ? (
                   <span className="badge badge-cyan" style={{marginBottom:'1rem', textTransform:'uppercase', letterSpacing:'0.05em'}}>
-                    {solution.icon}
+                    {ICON_LABELS[solution.icon]
+                      ? pick(locale, ICON_LABELS[solution.icon])
+                      : solution.icon}
                   </span>
                 ) : null}
                 <h3 style={{fontSize:'1.25rem', fontWeight:700, color:'#0f172a', marginBottom:'0.75rem'}}>

@@ -4,11 +4,11 @@
  *   node scripts/translate-cms-ht.mjs            # simulation (lecture publique, n'écrit rien)
  *   node scripts/translate-cms-ht.mjs --apply    # écrit en production (jeton requis)
  *
- * Source des traductions : scripts/cms-ht/fr.json (textes français) et
- * scripts/cms-ht/ht.json (créole, même ordre). Un champ localisé {fr,en} sans
+ * Source des traductions : src/lib/i18n-ht/fr.json (textes français) et
+ * src/lib/i18n-ht/ht.json (créole, même ordre). Un champ localisé {fr,en} sans
  * `ht` reçoit la traduction dont le texte français est identique. Les champs
  * sans correspondance sont listés (à traduire, puis à ajouter aux deux fichiers).
- * Pages légales : scripts/cms-ht/legal-*.json (traduction indicative, à faire valider).
+ * Pages légales : src/lib/i18n-ht/legal-*.json (traduction indicative, à faire valider).
  *
  * Jeton : SANITY_API_TOKEN (Editor sur le projet fghn7rpw), jamais écrit sur disque.
  * Projet FORCÉ à fghn7rpw / production.
@@ -29,15 +29,15 @@ const LIVE_PAGES = new Set([
 ]);
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const fr = JSON.parse(fs.readFileSync(path.join(here, "cms-ht", "fr.json"), "utf8"));
-const ht = JSON.parse(fs.readFileSync(path.join(here, "cms-ht", "ht.json"), "utf8"));
+const fr = JSON.parse(fs.readFileSync(path.join(here, "..", "src", "lib", "i18n-ht", "fr.json"), "utf8"));
+const ht = JSON.parse(fs.readFileSync(path.join(here, "..", "src", "lib", "i18n-ht", "ht.json"), "utf8"));
 if (fr.length !== ht.length) {
   console.error(`fr.json (${fr.length}) et ht.json (${ht.length}) n'ont pas la même taille.`);
   process.exit(1);
 }
 const dict = new Map(fr.map((s, i) => [s, ht[i]]));
-const legalFr = JSON.parse(fs.readFileSync(path.join(here, "cms-ht", "legal-fr.json"), "utf8"));
-const legalHt = JSON.parse(fs.readFileSync(path.join(here, "cms-ht", "legal-ht.json"), "utf8"));
+const legalFr = JSON.parse(fs.readFileSync(path.join(here, "..", "src", "lib", "i18n-ht", "legal-fr.json"), "utf8"));
+const legalHt = JSON.parse(fs.readFileSync(path.join(here, "..", "src", "lib", "i18n-ht", "legal-ht.json"), "utf8"));
 if (legalFr.length !== legalHt.length) {
   console.error(`legal-fr.json (${legalFr.length}) et legal-ht.json (${legalHt.length}) n'ont pas la même taille.`);
   process.exit(1);
@@ -86,6 +86,16 @@ function walk(node, docId, type, p) {
       if (!patches.has(docId)) patches.set(docId, {});
       patches.get(docId)[`${p}.ht`] = blocks;
     }
+    return;
+  }
+  if (Array.isArray(node.fr) && node.fr.length && node.fr.every((x) => typeof x === "string")) {
+    // liste de textes (ex. benefitsIntl, flowStepsIntl)
+    if (node.ht?.length) return;
+    const out = node.fr.map((x) => dict.get(x));
+    if (out.every(Boolean)) {
+      if (!patches.has(docId)) patches.set(docId, {});
+      patches.get(docId)[`${p}.ht`] = out;
+    } else node.fr.forEach((x, i) => !out[i] && missing.push(`${type} ${docId}${p} : ${x.slice(0, 70)}`));
     return;
   }
   if (typeof node.fr === "string" && ("en" in node || Object.keys(node).length <= 3)) {
