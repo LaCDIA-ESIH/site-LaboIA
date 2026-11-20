@@ -159,7 +159,7 @@ function FeaturedCard({ item, locale }: { item: NewsListItem; locale: Locale }) 
         transform: "translate(-50%, -50%)",
         fontFamily: "var(--font-display)",
         fontSize: "clamp(var(--actu-wm-min, 8rem), 15vw, 14rem)",
-        fontWeight: 900,
+        fontWeight: 600,
         lineHeight: 1,
         letterSpacing: "-0.06em",
         color: "transparent",
@@ -394,7 +394,7 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
               <h2 style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
-                fontWeight: 900,
+                fontWeight: 600,
                 color: "var(--labo-text, var(--ink))",
                 letterSpacing: "-0.03em",
                 lineHeight: 1.05,
@@ -407,7 +407,7 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
               <h2 style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
-                fontWeight: 900,
+                fontWeight: 600,
                 color: "var(--labo-text, var(--ink))",
                 letterSpacing: "-0.03em",
                 lineHeight: 1.05,
@@ -432,7 +432,7 @@ export default function ActualitesSection({ title, intro, items, locale = "fr" }
             textAlign: "right",
             lineHeight: 2,
           }}>
-            <div style={{ fontFamily: "var(--font-display)", fontSize: "2.5rem", fontWeight: 900, color: "rgba(var(--haiti-blue-rgb),0.15)", letterSpacing: "-0.05em", lineHeight: 1 }}>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: "2.5rem", fontWeight: 600, color: "rgba(var(--haiti-blue-rgb),0.15)", letterSpacing: "-0.05em", lineHeight: 1 }}>
               {String(filtered.length).padStart(2, "0")}
             </div>
             <div>{t("articlesLabel")}</div>

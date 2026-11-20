@@ -72,9 +72,9 @@ export default function Header({
         ].join(" ")}
       >
         {/* Bandeau institutionnel */}
-        <div className="hidden md:block" style={{ background: "var(--footer-ink)", color: "#f3efe4" }}>
-          <div className="mx-auto flex w-full max-w-[120rem] items-center justify-between gap-6 px-[clamp(1.5rem,6vw,6rem)] py-1.5 text-[0.72rem] tracking-wide">
-            <span style={{ opacity: 0.85 }}>
+        <div style={{ background: "var(--footer-ink)", color: "#f3efe4" }}>
+          <div className="mx-auto flex w-full max-w-[120rem] items-center justify-between gap-4 px-[clamp(1rem,6vw,6rem)] py-1.5 text-[0.68rem] tracking-wide sm:text-[0.72rem]">
+            <span className="truncate" style={{ opacity: 0.85 }}>
               {tBrand("carriedBy")}{" "}
               <a
                 href="https://esih.edu"
@@ -86,13 +86,13 @@ export default function Header({
                 {tBrand("esihName")}
               </a>
             </span>
-            <span style={{ opacity: 0.7 }}>Haïti · Caraïbes</span>
+            <span className="hidden shrink-0 sm:inline" style={{ opacity: 0.7 }}>Haïti · Caraïbes</span>
           </div>
         </div>
 
-        <div className="mx-auto flex w-full max-w-[120rem] items-center justify-between gap-6 px-[clamp(1.5rem,6vw,6rem)] py-3">
+        <div className="mx-auto flex w-full max-w-[120rem] items-center justify-between gap-6 px-[clamp(1rem,6vw,6rem)] py-2.5 sm:py-3">
           {/* Logo */}
-          <Link href="/" className="group flex items-center gap-5" aria-label={site.name ?? "LaCDIA"}>
+          <Link href="/" className="group flex min-w-0 items-center gap-5" aria-label={site.name ?? "LaCDIA"}>
             <LaCDIAWordmark size="md" />
             <span
               aria-hidden="true"
@@ -100,7 +100,7 @@ export default function Header({
               style={{ background: "var(--labo-border)" }}
             />
             <span className="hidden lg:block">
-              <EsihMark height={30} />
+              <EsihMark height={38} />
             </span>
           </Link>
 
@@ -126,7 +126,7 @@ export default function Header({
           </nav>
 
           {/* Right side */}
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <LocaleSwitcher />
 
             {/* Mobile burger */}
@@ -146,7 +146,7 @@ export default function Header({
       </header>
 
       {/* Spacer to push content below fixed header */}
-      <div className="h-[4.2rem] md:h-[6.2rem]" aria-hidden="true" />
+      <div className="header-spacer" aria-hidden="true" />
 
       {/* Mobile menu */}
       {mobileOpen && (
@@ -191,7 +191,7 @@ export default function Header({
 
             <div className="mt-6 border-t border-[var(--labo-border)] pt-5">
               <p className="mb-2 text-xs text-[var(--labo-text-muted)]">{tBrand("carriedBy")}</p>
-              <EsihMark height={30} withName name={tBrand("esihName")} />
+              <EsihMark height={44} />
             </div>
           </div>
         </div>

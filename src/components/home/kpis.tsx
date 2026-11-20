@@ -57,7 +57,7 @@ function KpiStripe({ item, index, active }: { item: KpiItem; index: number; acti
         style={{
           fontFamily: "var(--font-display)",
           fontSize: "clamp(2.5rem,4vw,3.75rem)",
-          fontWeight: 900,
+          fontWeight: 600,
           lineHeight: 0.9,
           letterSpacing: "-0.04em",
           backgroundImage: "linear-gradient(135deg, " + m.color + ", " + m.gradEnd + ")",
@@ -118,7 +118,7 @@ export default function Kpis({ title, intro, items, meta }: KpisProps) {
               {sectionLabel}
             </div>
             {title && (
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.75rem,3vw,2.75rem)", fontWeight: 900, color: "var(--labo-text)", letterSpacing: "-0.03em", lineHeight: 1.05, margin: 0 }}>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.75rem,3vw,2.75rem)", fontWeight: 600, color: "var(--labo-text)", letterSpacing: "-0.03em", lineHeight: 1.05, margin: 0 }}>
                 {title}
               </h2>
             )}

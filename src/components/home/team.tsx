@@ -154,7 +154,7 @@ export default function Team({ sectionLabel, title, intro, note, categories, sta
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.75rem,3.2vw,2.75rem)",
-                fontWeight: 900,
+                fontWeight: 600,
                 letterSpacing: "-0.03em",
                 lineHeight: 1.05,
                 color: "var(--tech-text)",

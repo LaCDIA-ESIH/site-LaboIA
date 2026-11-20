@@ -7,6 +7,10 @@ import { EsihMark } from "@/components/brand/esih-mark";
 import type { Locale } from "@/lib/i18n";
 import type { Navigation, SiteSettings } from "@/lib/sanity/types";
 import { localizeNavLabel, resolveNavItems } from "@/lib/nav";
+import { sanityFetch } from "@/lib/sanity/client";
+import { partnerListQuery } from "@/lib/sanity/queries";
+import { localLogoFor } from "@/lib/partner-logos";
+import type { PartnerListItem } from "@/lib/sanity/types";
 
 const CONTACT_EMAIL = "contact.lacdia@esih.edu";
 
@@ -25,6 +29,9 @@ export default async function Footer({
   const t = await getTranslations({ locale, namespace: "footer" });
   const tBrand = await getTranslations({ locale, namespace: "brand" });
   const tNav = await getTranslations({ locale, namespace: "nav" });
+  const partners = (await sanityFetch<PartnerListItem[]>(partnerListQuery, { locale }, []))
+    .map((p) => ({ name: p.name, website: p.website, logo: p.logo?.url ?? localLogoFor(p.name) }))
+    .filter((p) => Boolean(p.logo));
   const year = new Date().getFullYear();
   const shortName = site.shortName ?? "LaCDIA";
   const copyrightText = (site.footerCopyrightText ?? `© {year} {shortName}. ${t("copyright")}`)
@@ -58,12 +65,43 @@ export default async function Footer({
               {site.description ?? t("descriptionFallback")}
             </p>
 
+            {partners.length > 0 && (
+              <div className="mt-8 border-t border-[#f3efe4]/15 pt-6">
+                <p className={heading} style={{ marginBottom: "0.9rem" }}>
+                  {t("partners")}
+                </p>
+                <ul className="flex flex-wrap items-center gap-3">
+                  {partners.map((p) => {
+                    const img = (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={p.logo as string}
+                        alt={p.name}
+                        className="h-14 w-auto max-w-[8rem] object-contain"
+                      />
+                    );
+                    return (
+                      <li key={p.name} className="rounded-sm bg-[var(--paper)] p-2">
+                        {p.website ? (
+                          <a href={p.website} target="_blank" rel="noreferrer" aria-label={p.name}>
+                            {img}
+                          </a>
+                        ) : (
+                          img
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+
             <div className="mt-8 border-t border-[#f3efe4]/15 pt-6">
               <p className={heading} style={{ marginBottom: "0.9rem" }}>
                 {tBrand("carriedBy")}
               </p>
               <a href="https://esih.edu" target="_blank" rel="noreferrer" className="inline-block rounded-sm">
-                <EsihMark tone="dark" height={36} withName name={tBrand("esihName")} />
+                <EsihMark tone="dark" height={44} />
               </a>
             </div>
           </div>

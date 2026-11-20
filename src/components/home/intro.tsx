@@ -132,14 +132,14 @@ export default async function Intro({
               {/* Opening quote mark — decorative */}
               <span aria-hidden="true" style={{
                 position: "absolute", top: "-1.5rem", left: "-0.5rem",
-                fontFamily: "var(--font-display)", fontSize: "8rem", fontWeight: 900,
+                fontFamily: "var(--font-display)", fontSize: "8rem", fontWeight: 600,
                 lineHeight: 1, color: "var(--labo-accent-teal)", opacity: 0.07,
                 userSelect: "none", pointerEvents: "none",
               }}>&ldquo;</span>
 
               <h2 style={{
-                fontFamily: "var(--font-display)", fontWeight: 900,
-                fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+                fontFamily: "var(--font-display)", fontWeight: 600,
+                fontSize: "clamp(1.5rem, 3.4vw, 2.6rem)", overflowWrap: "anywhere",
                 lineHeight: 1.1, letterSpacing: "-0.035em",
                 color: "var(--labo-text)", margin: "0 0 1.5rem",
                 position: "relative",

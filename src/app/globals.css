@@ -1877,13 +1877,13 @@ body {
 }
 
 .partner-tile-logo {
-  max-width: 75%;
-  max-height: 55%;
+  max-width: 88%;
+  max-height: 88%;
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.6;
+  filter: grayscale(0.6);
+  opacity: 0.9;
   transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -2871,3 +2871,18 @@ body {
 }
 .institution-link:hover { color: var(--haiti-red); }
 @media (max-width: 760px) { .institution-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   RESPONSIVE — header, titres, composants clés
+   ============================================================ */
+.header-spacer { height: 5.6rem; }
+@media (min-width: 768px) { .header-spacer { height: 6.4rem; } }
+@media (min-width: 1024px) { .header-spacer { height: 6.5rem; } }
+
+@media (max-width: 480px) {
+  .locale-toggle-option { padding: 4px 7px; font-size: 0.66rem; letter-spacing: 0.04em; }
+  .lacdia-wordmark { gap: 0.5rem !important; }
+  .lacdia-wordmark img { height: 34px !important; }
+  .lacdia-wordmark span span:first-child { font-size: 1.2rem !important; }
+}
+img, svg, video { max-width: 100%; }

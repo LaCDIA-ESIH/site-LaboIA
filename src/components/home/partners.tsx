@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import type { MouseEvent } from "react";
 
+import { localLogoFor } from "@/lib/partner-logos";
+
 type PartnerPreview = {
   _id: string;
   name: string;
@@ -28,6 +30,7 @@ function handleSpotlightMove(e: MouseEvent<HTMLElement>) {
 }
 
 function PartnerTile({ partner }: { partner: PartnerPreview }) {
+  const localLogo = partner.logo?.url ? undefined : localLogoFor(partner.name);
   const content = partner.logo?.url ? (
     <Image
       src={partner.logo.url}
@@ -36,6 +39,8 @@ function PartnerTile({ partner }: { partner: PartnerPreview }) {
       height={partner.logo.height ?? 70}
       className="partner-tile-logo"
     />
+  ) : localLogo ? (
+    <Image src={localLogo} alt={partner.name} width={140} height={140} className="partner-tile-logo" />
   ) : (
     <span className="partner-tile-wordmark">{partner.name}</span>
   );

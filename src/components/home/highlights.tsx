@@ -154,7 +154,7 @@ function AxeCard({
       {/* Ghost number */}
       <span aria-hidden="true" style={{
         position: "absolute", bottom: "-0.5rem", right: "1.5rem",
-        fontFamily: "var(--font-display)", fontSize: "8rem", fontWeight: 900,
+        fontFamily: "var(--font-display)", fontSize: "8rem", fontWeight: 600,
         lineHeight: 1, color, opacity: 0.04, userSelect: "none", pointerEvents: "none",
       }}>
         {num}
@@ -247,7 +247,7 @@ function PoleCard({
       padding: "2.25rem 2.5rem",
       overflow: "hidden",
       display: "grid",
-      gridTemplateColumns: "1fr 1fr",
+      gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 17rem), 1fr))",
       gap: "2rem",
       alignItems: "start",
     }}>
@@ -533,7 +533,7 @@ export default function Highlights({
           </div>
           <h2 style={{
             fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-            fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 1.0,
+            fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1.0,
             color: "var(--labo-text)", margin: "0 0 1.25rem",
           }}>
             {t("sectionTitle")}

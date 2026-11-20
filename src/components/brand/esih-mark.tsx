@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-/** Chemin du logo officiel ESIH : déposer le fichier dans `public/logo/`. */
-export const ESIH_LOGO_SRC = "/logo/esih.svg";
+/** Logo officiel ESIH (copie de `public/logo/Porteur/`). */
+export const ESIH_LOGO_SRC = "/logo/esih.webp";
 export const ESIH_URL = "https://esih.edu";
 
 /**
  * Marque de l'institution porteuse (ESIH).
- * Affiche le logo officiel s'il est présent dans `public/logo/esih.svg`,
+ * Affiche le logo officiel `public/logo/esih.webp` (500×144, texte « ESIH » + nom inclus),
  * sinon un composé typographique propre — jamais d'image cassée.
  */
 export function EsihMark({
@@ -58,9 +58,17 @@ export function EsihMark({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={ESIH_LOGO_SRC}
-          alt="ESIH"
+          alt="ESIH — École Supérieure d'Infotronique d'Haïti"
           height={height}
-          style={{ height, width: "auto" }}
+          style={{
+            height,
+            width: "auto",
+            maxWidth: "100%",
+            // Le logo officiel est rouge + bleu nuit : sur fond sombre, plaque papier.
+            ...(tone === "dark"
+              ? { background: "var(--paper)", padding: "0.5rem 0.75rem", borderRadius: 2 }
+              : {}),
+          }}
         />
       )}
       {withName && name ? (

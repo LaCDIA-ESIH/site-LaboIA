@@ -143,7 +143,7 @@ export default function GovernanceEthics({ locale = "fr" }: GovernanceProps) {
           </div>
           <h2 style={{
             fontFamily: "var(--font-display)", fontSize: "clamp(1.75rem,3.5vw,2.75rem)",
-            fontWeight: 900, letterSpacing: "-0.035em", lineHeight: 1.1,
+            fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1.1,
             color: "var(--labo-text)", margin: "0 0 0.85rem",
           }}>
             {isFr ? "Deux lignes, une gouvernance claire" : "Two lines, one clear governance"}
