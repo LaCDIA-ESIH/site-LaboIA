@@ -2886,3 +2886,10 @@ body {
   .lacdia-wordmark span span:first-child { font-size: 1.2rem !important; }
 }
 img, svg, video { max-width: 100%; }
+
+/* 404 */
+.not-found { padding: clamp(4rem, 10vw, 8rem) 0; text-align: left; }
+.not-found-code { font-family: var(--font-display); font-size: clamp(4rem, 12vw, 8rem); line-height: 1; color: var(--haiti-red); margin: 0; }
+.not-found h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 600; margin: 0.5rem 0 1rem; color: var(--ink); }
+.not-found p { color: var(--labo-text-muted); max-width: 38rem; margin: 0 0 2rem; }
+.not-found p.not-found-code { margin: 0; color: var(--haiti-red); max-width: none; }

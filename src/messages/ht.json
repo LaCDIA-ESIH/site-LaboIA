@@ -1,4 +1,9 @@
 {
+  "notFound": {
+    "title": "Paj la pa jwenn",
+    "body": "Paj w ap chèche a pa egziste oswa yo deplase l.",
+    "cta": "Retounen nan akèy"
+  },
   "brand": {
     "carriedBy": "Pòte pa",
     "esihName": "École Supérieure d'Infotronique d'Haïti (ESIH)",
