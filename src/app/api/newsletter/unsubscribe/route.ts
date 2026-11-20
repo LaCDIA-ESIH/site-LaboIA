@@ -23,6 +23,13 @@ const copyByLocale = {
       "A request to unsubscribe from the LaCDIA newsletter was made with this email address. Click the button below to confirm — this link expires in 1 hour.",
     ignore: "If you didn't request this, you can safely ignore this email: nothing will change.",
   },
+  ht: {
+    subject: "Konfime dezabònman ou — LaCDIA",
+    cta: "Konfime dezabònman an",
+    intro:
+      "Yon demann pou dezabòne nan bilten LaCDIA fèt ak adrès imèl sa a. Klike sou bouton ki anba a pou konfime — lyen sa a ap ekspire nan 1 èdtan.",
+    ignore: "Si se pa ou ki fè demann sa a, ou ka inyore imèl sa a : anyen p ap chanje.",
+  },
 };
 
 export async function POST(request: Request) {
@@ -38,7 +45,7 @@ export async function POST(request: Request) {
   // Honeypot anti-bot : champ caché que seuls les robots remplissent.
   // On répond "ok" sans rien faire pour ne pas leur signaler le piège.
   const honeypot = body?.company?.toString().trim();
-  const locale = body?.locale === "en" ? "en" : "fr";
+  const locale: "fr" | "en" | "ht" = body?.locale === "en" ? "en" : body?.locale === "ht" ? "ht" : "fr";
 
   if (honeypot) {
     return NextResponse.json({ ok: true, message: "Email de confirmation envoyé." });
@@ -71,7 +78,7 @@ export async function POST(request: Request) {
   confirmUrl.searchParams.set("token", token);
   confirmUrl.searchParams.set("locale", locale);
 
-  const copy = copyByLocale[locale as "fr" | "en"];
+  const copy = copyByLocale[locale];
 
   const result = await sendEmail({
     to: email,

@@ -55,6 +55,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       fr: localizedPath(`/actualites/${frSlug}`, "fr"),
       en: localizedPath(`/actualites/${enSlug}`, "en"),
+      ht: localizedPath(`/actualites/${frSlug}`, "ht"),
     },
   });
 }

@@ -30,7 +30,7 @@ function Tabs({ forms, locale }: { forms?: FormSettings | null; locale: Locale }
         style={{
           display: "flex",
           gap: "0.5rem",
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          borderBottom: "1px solid rgba(var(--ink-rgb),0.08)",
           marginBottom: "2.5rem",
         }}
       >
@@ -46,8 +46,8 @@ function Tabs({ forms, locale }: { forms?: FormSettings | null; locale: Locale }
               fontWeight: 600,
               border: "none",
               background: "transparent",
-              color: active === tab ? "var(--labo-accent-teal, #00d4aa)" : "var(--labo-text-muted, #8892b0)",
-              borderBottom: active === tab ? "2px solid var(--labo-accent-teal, #00d4aa)" : "2px solid transparent",
+              color: active === tab ? "var(--labo-accent-teal, var(--haiti-blue))" : "var(--labo-text-muted, var(--labo-text-muted))",
+              borderBottom: active === tab ? "2px solid var(--labo-accent-teal, var(--haiti-blue))" : "2px solid transparent",
               cursor: "pointer",
               marginBottom: "-1px",
               transition: "color 0.2s, border-color 0.2s",

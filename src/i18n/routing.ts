@@ -9,7 +9,7 @@ export const routing = defineRouting({
   locales,
   defaultLocale,
   // Toutes les locales sont préfixées dans l'URL
-  // /fr = français, /en = english
+  // /fr = français, /en = english, /ht = kreyòl ayisyen
   // La racine / redirige automatiquement vers /fr
   localePrefix: "always",
 });

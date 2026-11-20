@@ -49,7 +49,8 @@ export async function buildMetadata({
       : null;
 
   const metadata: Metadata = {
-    title: fullTitle,
+    // `absolute` : le gabarit du layout ajouterait sinon un second « | LaCDIA ».
+    title: { absolute: fullTitle },
     description: resolvedDescription,
     keywords: seo?.keywords,
     robots:
@@ -89,8 +90,9 @@ export async function buildMetadata({
   if (Object.values(resolvedAlternates).some(Boolean)) {
     metadata.alternates = {
       languages: {
-        ...(resolvedAlternates.fr ? { fr: resolvedAlternates.fr } : {}),
-        ...(resolvedAlternates.en ? { en: resolvedAlternates.en } : {}),
+        ...Object.fromEntries(
+          locales.flatMap((l) => (resolvedAlternates[l] ? [[l, resolvedAlternates[l] as string]] : [])),
+        ),
       },
     };
   }

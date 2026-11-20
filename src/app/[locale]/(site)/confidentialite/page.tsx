@@ -26,6 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       fr: localizedPath("/confidentialite", "fr"),
       en: localizedPath("/confidentialite", "en"),
+      ht: localizedPath("/confidentialite", "ht"),
     },
   });
 }

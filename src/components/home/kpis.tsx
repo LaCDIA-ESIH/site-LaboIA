@@ -15,10 +15,10 @@ type StripeMeta = { color: string; gradEnd: string };
 
 // Cycled per item so the underline gradient direction alternates teal->violet / violet->teal.
 const STRIPE_META: StripeMeta[] = [
-  { color: "#00d4aa", gradEnd: "#6c63ff" },
-  { color: "#6c63ff", gradEnd: "#00d4aa" },
-  { color: "#00b4e4", gradEnd: "#6c63ff" },
-  { color: "#6c63ff", gradEnd: "#00d4aa" },
+  { color: "var(--haiti-blue)", gradEnd: "var(--haiti-red)" },
+  { color: "var(--haiti-red)", gradEnd: "var(--haiti-blue)" },
+  { color: "var(--haiti-blue)", gradEnd: "var(--haiti-red)" },
+  { color: "var(--haiti-red)", gradEnd: "var(--haiti-blue)" },
 ];
 
 function parseNum(val: string): number | null {
@@ -79,11 +79,11 @@ function KpiStripe({ item, index, active }: { item: KpiItem; index: number; acti
           background: "linear-gradient(90deg, " + m.color + ", " + m.gradEnd + ")",
         }}
       />
-      <div style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 700, color: "var(--labo-text)", marginBottom: "0.35rem", lineHeight: 1.25 }}>
+      <div style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, color: "var(--labo-text)", marginBottom: "0.35rem", lineHeight: 1.25 }}>
         {item.label}
       </div>
       {item.note && (
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.06em", color: "rgba(136,146,176,0.55)", margin: 0, lineHeight: 1.5 }}>
+        <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.06em", color: "rgba(var(--ink-rgb),0.66)", margin: 0, lineHeight: 1.5 }}>
           {item.note}
         </p>
       )}
@@ -136,7 +136,7 @@ export default function Kpis({ title, intro, items, meta }: KpisProps) {
             flexWrap: "wrap",
             borderRadius: 20,
             border: "1px solid var(--labo-border)",
-            background: "rgba(17,24,39,0.5)",
+            background: "var(--labo-surface)",
             padding: "2.5rem 0",
           }}
         >
@@ -147,7 +147,7 @@ export default function Kpis({ title, intro, items, meta }: KpisProps) {
           ))}
         </div>
         {(meta?.lastUpdated || meta?.disclaimer) && (
-          <div style={{ marginTop: "1.75rem", display: "flex", flexWrap: "wrap", justifyContent: "flex-end", gap: "1rem", fontFamily: "var(--font-mono)", fontSize: "0.63rem", letterSpacing: "0.07em", color: "rgba(136,146,176,0.38)" }}>
+          <div style={{ marginTop: "1.75rem", display: "flex", flexWrap: "wrap", justifyContent: "flex-end", gap: "1rem", fontFamily: "var(--font-mono)", fontSize: "0.63rem", letterSpacing: "0.07em", color: "rgba(var(--ink-rgb),0.66)" }}>
             {meta.lastUpdated && <span>{t("updated")} {meta.lastUpdated}</span>}
             {meta.disclaimer && <span>{meta.disclaimer}</span>}
           </div>

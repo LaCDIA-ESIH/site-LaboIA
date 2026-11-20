@@ -13,9 +13,9 @@ const GOVERNANCE_ORGANS = [
     titleEn: "Parent institution",
     descFr: "L'École Supérieure d'Infotronique d'Haïti est l'entité juridique porteuse de LaCDIA. Elle conclut les actes, conventions et engagements institutionnels.",
     descEn: "The École Supérieure d'Infotronique d'Haïti is the legal entity behind LaCDIA. It concludes institutional acts, agreements and commitments.",
-    color: "#f0b429",
-    bg: "rgba(240,180,41,0.08)",
-    border: "rgba(240,180,41,0.2)",
+    color: "var(--ink)",
+    bg: "rgba(var(--ink-rgb),0.05)",
+    border: "rgba(var(--ink-rgb),0.18)",
     line: "INSTITUTIONNELLE",
   },
   {
@@ -26,9 +26,9 @@ const GOVERNANCE_ORGANS = [
     titleEn: "Strategy & coordination",
     descFr: "Les trois cofondateurs assurent la stratégie institutionnelle, la coordination opérationnelle, le développement des programmes, les partenariats et la mobilisation des ressources.",
     descEn: "The three co-founders provide institutional strategy, operational coordination, program development, partnerships and resource mobilization.",
-    color: "#f0b429",
-    bg: "rgba(240,180,41,0.08)",
-    border: "rgba(240,180,41,0.2)",
+    color: "var(--ink)",
+    bg: "rgba(var(--ink-rgb),0.05)",
+    border: "rgba(var(--ink-rgb),0.18)",
     line: "INSTITUTIONNELLE",
   },
   {
@@ -39,9 +39,9 @@ const GOVERNANCE_ORGANS = [
     titleEn: "Interface & arbitration",
     descFr: "Arbitre les sujets à l'intersection de la science, de la stratégie, des finances, des partenariats, des ressources humaines, de la communication et de la propriété intellectuelle.",
     descEn: "Arbitrates topics at the intersection of science, strategy, finance, partnerships, human resources, communication and intellectual property.",
-    color: "#00d4aa",
-    bg: "rgba(0,212,170,0.08)",
-    border: "rgba(0,212,170,0.2)",
+    color: "var(--haiti-blue)",
+    bg: "rgba(var(--haiti-blue-rgb),0.08)",
+    border: "rgba(var(--haiti-blue-rgb),0.2)",
     line: "CONVERGENCE",
   },
   {
@@ -52,9 +52,9 @@ const GOVERNANCE_ORGANS = [
     titleEn: "Scientific direction",
     descFr: "Assure l'orientation, la qualité, l'intégrité et la supervision scientifiques. Sa signature est strictement scientifique — sans pouvoir général d'engagement institutionnel.",
     descEn: "Ensures scientific orientation, quality, integrity and supervision. Its signature is strictly scientific — with no general institutional commitment power.",
-    color: "#6c63ff",
-    bg: "rgba(108,99,255,0.08)",
-    border: "rgba(108,99,255,0.2)",
+    color: "var(--haiti-red)",
+    bg: "rgba(var(--haiti-red-rgb),0.08)",
+    border: "rgba(var(--haiti-red-rgb),0.2)",
     line: "SCIENTIFIQUE",
   },
   {
@@ -65,17 +65,17 @@ const GOVERNANCE_ORGANS = [
     titleEn: "Assessment & quality",
     descFr: "Réunit la Direction scientifique, les Responsables scientifiques des 2 axes et les Coordonnateurs techniques. Examine la stratégie scientifique et la qualité des productions.",
     descEn: "Brings together the Scientific Directorate, the Scientific Heads of the 2 axes and the Technical Coordinators. Examines scientific strategy and production quality.",
-    color: "#6c63ff",
-    bg: "rgba(108,99,255,0.08)",
-    border: "rgba(108,99,255,0.2)",
+    color: "var(--haiti-red)",
+    bg: "rgba(var(--haiti-red-rgb),0.08)",
+    border: "rgba(var(--haiti-red-rgb),0.2)",
     line: "SCIENTIFIQUE",
   },
 ];
 
 const LINE_COLORS: Record<string, { color: string; bg: string; border: string }> = {
-  INSTITUTIONNELLE: { color: "#f0b429", bg: "rgba(240,180,41,0.1)", border: "rgba(240,180,41,0.25)" },
-  SCIENTIFIQUE: { color: "#6c63ff", bg: "rgba(108,99,255,0.1)", border: "rgba(108,99,255,0.25)" },
-  CONVERGENCE: { color: "#00d4aa", bg: "rgba(0,212,170,0.1)", border: "rgba(0,212,170,0.25)" },
+  INSTITUTIONNELLE: { color: "var(--ink)", bg: "rgba(var(--ink-rgb),0.06)", border: "rgba(var(--ink-rgb),0.2)" },
+  SCIENTIFIQUE: { color: "var(--haiti-red)", bg: "rgba(var(--haiti-red-rgb),0.1)", border: "rgba(var(--haiti-red-rgb),0.25)" },
+  CONVERGENCE: { color: "var(--haiti-blue)", bg: "rgba(var(--haiti-blue-rgb),0.1)", border: "rgba(var(--haiti-blue-rgb),0.25)" },
 };
 
 const PRINCIPLES = [
@@ -117,15 +117,15 @@ export default function GovernanceEthics({ locale = "fr" }: GovernanceProps) {
       {/* Top border */}
       <div aria-hidden="true" style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 1,
-        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent)",
+        background: "linear-gradient(90deg, transparent, rgba(var(--ink-rgb),0.07), transparent)",
       }} />
 
       {/* Ambient glows */}
       <div aria-hidden="true" style={{
         position: "absolute", inset: 0, pointerEvents: "none",
         background:
-          "radial-gradient(ellipse 40% 40% at 80% 50%, rgba(108,99,255,0.06) 0%, transparent 70%)," +
-          "radial-gradient(ellipse 35% 35% at 15% 30%, rgba(240,180,41,0.05) 0%, transparent 70%)",
+          "radial-gradient(ellipse 40% 40% at 80% 50%, rgba(var(--haiti-red-rgb),0.06) 0%, transparent 70%)," +
+          "radial-gradient(ellipse 35% 35% at 15% 30%, rgba(var(--ink-rgb),0.03) 0%, transparent 70%)",
       }} />
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
@@ -133,10 +133,10 @@ export default function GovernanceEthics({ locale = "fr" }: GovernanceProps) {
         {/* Header */}
         <div style={{ marginBottom: "3rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-            <div style={{ width: 32, height: 1, background: "rgba(108,99,255,0.6)" }} />
+            <div style={{ width: 32, height: 1, background: "rgba(var(--haiti-red-rgb),0.6)" }} />
             <span style={{
               fontFamily: "var(--font-mono)", fontSize: "0.62rem", letterSpacing: "0.2em",
-              textTransform: "uppercase", color: "#6c63ff", fontWeight: 700,
+              textTransform: "uppercase", color: "var(--haiti-red)", fontWeight: 700,
             }}>
               {isFr ? "Gouvernance" : "Governance"}
             </span>
@@ -168,7 +168,7 @@ export default function GovernanceEthics({ locale = "fr" }: GovernanceProps) {
             const lineStyle = LINE_COLORS[organ.line];
             return (
               <div key={organ.id} style={{
-                background: "linear-gradient(145deg, #0d1525 0%, #111827 100%)",
+                background: "var(--labo-surface)",
                 border: "1px solid " + organ.border,
                 borderRadius: 16,
                 padding: "1.5rem 1.25rem",
@@ -194,7 +194,7 @@ export default function GovernanceEthics({ locale = "fr" }: GovernanceProps) {
                 {/* Organ label */}
                 <div>
                   <p style={{
-                    fontFamily: "var(--font-display)", fontSize: "0.82rem", fontWeight: 800,
+                    fontFamily: "var(--font-display)", fontSize: "0.82rem", fontWeight: 600,
                     color: "var(--labo-text)", margin: "0 0 0.1rem", lineHeight: 1.25,
                   }}>
                     {isFr ? organ.labelFr : organ.labelEn}
@@ -208,7 +208,7 @@ export default function GovernanceEthics({ locale = "fr" }: GovernanceProps) {
                 </div>
 
                 <p style={{
-                  fontSize: "0.75rem", color: "rgba(240,244,255,0.5)", lineHeight: 1.6,
+                  fontSize: "0.75rem", color: "rgba(var(--ink-rgb),0.66)", lineHeight: 1.6,
                   margin: 0,
                 }}>
                   {isFr ? organ.descFr : organ.descEn}
@@ -220,14 +220,14 @@ export default function GovernanceEthics({ locale = "fr" }: GovernanceProps) {
 
         {/* Governance principles */}
         <div style={{
-          background: "rgba(6,9,18,0.6)",
-          border: "1px solid rgba(255,255,255,0.07)",
+          background: "var(--paper-2)",
+          border: "1px solid rgba(var(--ink-rgb),0.07)",
           borderRadius: 20,
           padding: "2rem 2.25rem",
         }}>
           <p style={{
             fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.18em",
-            textTransform: "uppercase", color: "rgba(240,244,255,0.35)",
+            textTransform: "uppercase", color: "rgba(var(--ink-rgb),0.66)",
             marginBottom: "1.25rem",
           }}>
             {isFr ? "Principes de gouvernance" : "Governance principles"}
@@ -241,15 +241,15 @@ export default function GovernanceEthics({ locale = "fr" }: GovernanceProps) {
               }}>
                 <div style={{
                   width: 28, height: 28, borderRadius: 8, flexShrink: 0,
-                  background: "rgba(0,212,170,0.08)", border: "1px solid rgba(0,212,170,0.15)",
+                  background: "rgba(var(--haiti-blue-rgb),0.08)", border: "1px solid rgba(var(--haiti-blue-rgb),0.15)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d={p.iconPath} stroke="#00d4aa" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d={p.iconPath} stroke="var(--haiti-blue)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
                 <p style={{
-                  fontSize: "0.78rem", color: "rgba(240,244,255,0.5)", lineHeight: 1.6, margin: 0,
+                  fontSize: "0.78rem", color: "rgba(var(--ink-rgb),0.66)", lineHeight: 1.6, margin: 0,
                 }}>
                   {isFr ? p.fr : p.en}
                 </p>

@@ -29,7 +29,7 @@ Sanity Studio est embarqué dans l'app Next.js : `npm run dev` puis ouvrir `/stu
 ### i18n — attention aux pièges
 
 - Le fichier middleware s'appelle **`src/proxy.ts`** (pas `middleware.ts`) et enregistre `next-intl`'s `createMiddleware`.
-- Les locales actives sont `fr` (défaut) et `en`, définies dans `src/lib/i18n.ts` (`locales`). ES et HT ont été retirés (fichiers de messages, scripts `translate:*`, matcher du proxy) — ne pas les réintroduire sans décision produit explicite.
+- Les locales actives sont `fr` (défaut), `en` et `ht` (créole haïtien, réintroduit sur décision produit — l'ES reste retiré), définies dans `src/lib/i18n.ts` (`locales`). `src/i18n/request.ts` fusionne les messages `ht`/`en` sur `fr.json` : toute clé manquante retombe sur le français, aucune page ne casse. Le contenu Sanity n'est saisi qu'en FR/EN : pour `ht`, les requêtes GROQ retombent sur le FR et `sanityFetch` (`src/lib/sanity/client.ts`) réduit les objets `{fr,en}` bruts. Les chaînes éditoriales inline passent par `pick()` (`src/lib/i18n-pick.ts`), les dates par `formatDate()` (mois créoles). Les traductions `ht.json` sont à faire relire par un locuteur natif avant mise en prod.
 - Toute copie UI statique sans backing CMS (labels, aria-labels, contenu de repli des composants) doit passer par `next-intl` (`src/messages/{fr,en}.json` + `useTranslations`/`getTranslations`) — un seul système de traduction, pas de dictionnaire ad-hoc par composant. Le contenu éditorial (pages, axes, actualités...) reste piloté par Sanity (`localeString`/`localeText`).
 - `localePrefix: "always"` — toute URL est préfixée (`/fr/...`, `/en/...`), `/` redirige vers `/fr`.
 - Helpers de routing : `src/i18n/routing.ts`, `src/i18n/navigation.ts` (Link/redirect localisés), `src/i18n/request.ts` (config next-intl). `src/lib/i18n-server.ts` expose `getServerLocale()` pour les Server Components/Route Handlers.
@@ -68,3 +68,9 @@ Sanity Studio est embarqué dans l'app Next.js : `npm run dev` puis ouvrir `/stu
 ### Styling
 
 Tailwind CSS v4, configuré via `src/app/globals.css` (pas de `tailwind.config` séparé attendu — vérifier ce fichier pour les tokens/thème avant d'ajouter des classes custom).
+
+### Identité visuelle (refonte « papier & encre »)
+
+- Palette unique dans `src/app/globals.css` (`:root`) : fond papier `--paper`, encre `--ink`, bleu `--haiti-blue` et rouge `--haiti-red` (couleurs du logo). Les anciens noms `--labo-*` / `--tech-*` sont conservés comme alias : ne pas réintroduire de couleurs en dur (ni teal/violet) — utiliser les variables. Titres en Fraunces (`--font-heading`), corps en Inter.
+- Marque : `src/components/brand/lacdia-wordmark.tsx` (spirale `public/logo/lacdia-mark.png` + nom en texte) et `esih-mark.tsx` (institution porteuse). **Déposer le logo officiel ESIH dans `public/logo/esih.svg`** : il remplace automatiquement le repli typographique « ESIH » (header, footer, bandeau institution).
+- Le réseau neuronal animé et le bandeau défilant ont été supprimés volontairement (look « IA générique »).

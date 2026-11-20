@@ -4,7 +4,7 @@ Site institutionnel bilingue (FR/EN) pour LaCDIA, construit avec Next.js App Rou
 
 ## Fonctionnalités
 
-- Routing FR (défaut) / EN avec préfixe de langue et cookie de préférence (`lacdia_locale`). ES et HT ne sont plus supportés (retirés délibérément).
+- Routing FR (défaut) / EN / HT (créole haïtien) avec préfixe de langue et cookie de préférence. Les clés `ht` manquantes retombent sur le français ; l'ES n'est plus supporté.
 - Traductions UI statiques centralisées dans `src/messages/{fr,en}.json` (next-intl, un seul système de traduction) ; le contenu éditorial (pages, axes, actualités...) reste piloté par Sanity (`localeString`/`localeText`).
 - SEO complet : metadata, Open Graph, sitemap et robots.
 - Contenu hybride : contenu local (`src/content`) + contenu dynamique Sanity.

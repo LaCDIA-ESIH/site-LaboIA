@@ -12,7 +12,7 @@ export default function CookieSettingsLink({ label }: { label: string }) {
     <button
       type="button"
       onClick={handleClick}
-      className="text-sm text-[#8892b0] hover:text-[#f0f4ff] transition-colors text-left"
+      className="text-left text-sm text-[#f3efe4]/80 transition-colors hover:text-white"
     >
       {label}
     </button>

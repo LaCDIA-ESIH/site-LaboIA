@@ -6,6 +6,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { SeoData } from '@/lib/sanity/types';
 import { buildMetadata } from '@/lib/seo';
 import { getLatestNews } from '@/lib/cms';
+import { isLocale } from '@/lib/i18n';
 
 export const dynamic = "force-dynamic";
 
@@ -34,7 +35,7 @@ export async function generateMetadata({
   if (!page) return {};
 
   return buildMetadata({
-    locale: locale === "en" ? "en" : "fr",
+    locale: isLocale(locale) ? locale : "fr",
     title: page.title,
     seo: page.seo,
   });
@@ -72,7 +73,7 @@ export default async function GenericPage({
       typeof block === "object" && block !== null && (block as { _type?: unknown })._type === "latestNewsBlock",
   );
   const newsItems = newsBlocks.length > 0
-    ? await getLatestNews(locale === "en" ? "en" : "fr", Math.max(...newsBlocks.map((b) => b.limit || 3)))
+    ? await getLatestNews(isLocale(locale) ? locale : "fr", Math.max(...newsBlocks.map((b) => b.limit || 3)))
     : [];
 
   return (
