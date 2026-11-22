@@ -22,8 +22,18 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string
   default: { bg: "rgba(var(--ink-rgb),0.10)", text: "var(--labo-text-muted)", border: "rgba(var(--ink-rgb),0.20)" },
 };
 
+// Noms créoles des catégories → clé du mapping de couleurs (contenu CMS traduit à la lecture).
+const CATEGORY_ALIASES: Record<string, string> = {
+  rechèch: "Recherche",
+  patenarya: "Partenariat",
+  evènman: "Événement",
+  anons: "Annonce",
+};
+
 function getCategoryStyle(cat?: string) {
   if (!cat) return CATEGORY_COLORS.default;
+  const alias = CATEGORY_ALIASES[cat.toLowerCase()];
+  if (alias) return CATEGORY_COLORS[alias];
   for (const key of Object.keys(CATEGORY_COLORS)) {
     if (key !== "default" && cat.toLowerCase().includes(key.toLowerCase())) {
       return CATEGORY_COLORS[key];

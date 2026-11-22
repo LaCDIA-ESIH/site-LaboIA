@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/lib/i18n";
+import { SpiralMotif } from "@/components/brand/spiral-motif";
 
 type HeroProps = {
   badge?: string;
@@ -66,7 +67,9 @@ export default async function Hero({
           </div>
         </div>
 
-        <aside className="hero-id-card" aria-label={t("nameLabel")}>
+        <div className="hero-id-side">
+          <SpiralMotif className="hero-id-motif" />
+          <aside className="hero-id-card" aria-label={t("nameLabel")}>
           <Image
             src="/logo/lacdia-mark.png"
             alt=""
@@ -101,6 +104,7 @@ export default async function Hero({
             ))}
           </dl>
         </aside>
+        </div>
       </div>
     </section>
   );
