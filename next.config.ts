@@ -39,10 +39,26 @@ const contentSecurityPolicy = [
   `connect-src 'self' https://*.sanity.io ${analyticsSources}`,
 ].join("; ");
 
+// Fichiers de /public (non versionnés par un hash) : cache d'un jour, rafraîchi en arrière-plan.
+const PUBLIC_ASSET_CACHE = "public, max-age=86400, stale-while-revalidate=604800";
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: {
+    // CSS inséré dans le HTML : plus de feuille de style bloquant le premier rendu.
+    inlineCss: true,
+    // Réseau limité en local (trop de connexions parallèles vers Sanity) :
+    // BUILD_CONCURRENCY=2 npm run build. Sans la variable, comportement par défaut.
+    ...(process.env.BUILD_CONCURRENCY
+      ? { cpus: Number(process.env.BUILD_CONCURRENCY), staticGenerationMaxConcurrency: Number(process.env.BUILD_CONCURRENCY) }
+      : {}),
+  },
   async headers() {
     return [
+      {
+        source: "/(logo|images|og|banner|patenaires)/:path*",
+        headers: [{ key: "Cache-Control", value: PUBLIC_ASSET_CACHE }],
+      },
       {
         // /studio (Sanity Studio) a besoin de workers blob:, websockets, etc. :
         // il est exclu de la politique du site public.
@@ -104,6 +120,7 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: ["sanity", "@sanity/ui", "@sanity/icons"],
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",

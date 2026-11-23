@@ -4,9 +4,10 @@ import { useEffect, useRef } from "react";
 
 /**
  * Motif décoratif de l'accueil : la spirale du logo LaCDIA, tracée comme une
- * gravure. Elle tourne très lentement ; les nœuds et le tracé s'écartent et
- * s'illuminent doucement au passage du curseur (ou du doigt). Sans
- * mouvement si l'utilisateur a réduit les animations.
+ * gravure. Elle tourne très lentement (animation CSS composée par le GPU : aucun
+ * travail JavaScript au repos) ; les nœuds et le tracé s'écartent et s'illuminent
+ * doucement au passage du curseur (ou du doigt) : la boucle d'animation ne tourne
+ * que le temps de l'interaction. Sans mouvement si l'utilisateur a réduit les animations.
  */
 const SIZE = 400;
 const C = SIZE / 2;
@@ -16,7 +17,6 @@ const PATH_POINTS = 160;
 const LINK_STEP = 6;
 const REACH = 95; // rayon d'influence du curseur (unités du viewBox)
 const PUSH = 26; // déplacement maximal
-const ROT_SPEED = 0.012; // rad/s (~8 min par tour)
 
 type Pt = { x: number; y: number };
 const r2 = (n: number) => Math.round(n * 100) / 100;
@@ -49,26 +49,37 @@ export function SpiralMotif({ className = "" }: { className?: string }) {
     // décalages lissés (ressort amorti simple)
     const pathOff = pathBase.map(() => ({ x: 0, y: 0 }));
     const nodeOff = nodeBase.map(() => ({ x: 0, y: 0, glow: 0 }));
-    let angle = 0;
     let last = performance.now();
     let raf = 0;
+    let running = false;
     let visible = true;
 
+    // Angle courant de la rotation CSS (propriété `rotate` calculée, ex. « 12.3deg »).
+    const currentAngle = () => {
+      const m = /(-?[\d.]+)deg/.exec(getComputedStyle(svg).rotate);
+      return m ? (parseFloat(m[1]) * Math.PI) / 180 : 0;
+    };
+
+    // Position du curseur dans le repère du motif, avant rotation.
     const onMove = (e: PointerEvent) => {
       const rect = svg.getBoundingClientRect();
-      if (!rect.width) return;
-      pointer.x = ((e.clientX - rect.left) / rect.width) * SIZE;
-      pointer.y = ((e.clientY - rect.top) / rect.height) * SIZE;
+      // largeur de mise en page (indépendante de la rotation, contrairement au rectangle englobant)
+      const size = parseFloat(getComputedStyle(svg).width);
+      if (!rect.width || !size) return;
+      const vx = e.clientX - (rect.left + rect.width / 2);
+      const vy = e.clientY - (rect.top + rect.height / 2);
+      const a = currentAngle();
+      const cos = Math.cos(-a);
+      const sin = Math.sin(-a);
+      const k = SIZE / size;
+      pointer.x = C + (vx * cos - vy * sin) * k;
+      pointer.y = C + (vx * sin + vy * cos) * k;
       pointer.active = true;
+      start();
     };
     const onLeave = () => {
       pointer.active = false;
-    };
-
-    const rotate = (p: Pt, cos: number, sin: number): Pt => {
-      const dx = p.x - C;
-      const dy = p.y - C;
-      return { x: C + dx * cos - dy * sin, y: C + dx * sin + dy * cos };
+      start();
     };
 
     // retourne l'influence (0-1) et le vecteur de répulsion pour un point
@@ -84,36 +95,33 @@ export function SpiralMotif({ className = "" }: { className?: string }) {
     };
 
     const frame = (now: number) => {
-      raf = requestAnimationFrame(frame);
       if (!visible) {
-        last = now;
+        running = false;
         return;
       }
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
-      angle += ROT_SPEED * dt;
-      const cos = Math.cos(angle);
-      const sin = Math.sin(angle);
       const ease = 1 - Math.exp(-dt * 7);
+      let moving = pointer.active;
 
       const pathPts = pathBase.map((b, i) => {
-        const p = rotate(b, cos, sin);
-        const inf = influence(p);
+        const inf = influence(b);
         const o = pathOff[i];
         o.x += (inf.dx - o.x) * ease;
         o.y += (inf.dy - o.y) * ease;
-        return { x: p.x + o.x, y: p.y + o.y };
+        if (Math.abs(o.x) + Math.abs(o.y) > 0.02) moving = true;
+        return { x: b.x + o.x, y: b.y + o.y };
       });
       pathEl.setAttribute("d", toPath(pathPts));
 
       const nodePts = nodeBase.map((b, i) => {
-        const p = rotate(b, cos, sin);
-        const inf = influence(p);
+        const inf = influence(b);
         const o = nodeOff[i];
         o.x += (inf.dx * 1.4 - o.x) * ease;
         o.y += (inf.dy * 1.4 - o.y) * ease;
         o.glow += (inf.k - o.glow) * ease;
-        return { x: p.x + o.x, y: p.y + o.y, glow: o.glow };
+        if (Math.abs(o.x) + Math.abs(o.y) + o.glow > 0.02) moving = true;
+        return { x: b.x + o.x, y: b.y + o.y, glow: o.glow };
       });
 
       nodePts.forEach((n, i) => {
@@ -136,7 +144,18 @@ export function SpiralMotif({ className = "" }: { className?: string }) {
         el.setAttribute("y2", String(r2(nodePts[b].y)));
         el.style.opacity = String(r2(0.28 + glow * 0.9));
       });
+
+      // Au repos (curseur parti et tout revenu en place) : on arrête la boucle.
+      if (moving) raf = requestAnimationFrame(frame);
+      else running = false;
     };
+
+    function start() {
+      if (running || !visible) return;
+      running = true;
+      last = performance.now();
+      raf = requestAnimationFrame(frame);
+    }
 
     const io = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
@@ -145,7 +164,6 @@ export function SpiralMotif({ className = "" }: { className?: string }) {
     window.addEventListener("pointermove", onMove, { passive: true });
     document.documentElement.addEventListener("pointerleave", onLeave);
     window.addEventListener("blur", onLeave);
-    raf = requestAnimationFrame(frame);
 
     return () => {
       cancelAnimationFrame(raf);

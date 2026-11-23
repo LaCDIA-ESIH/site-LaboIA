@@ -227,7 +227,7 @@ export default function Team({ sectionLabel, title, intro, note, categories, sta
             fontFamily: "var(--font-mono)",
             fontSize: "0.72rem",
             letterSpacing: "0.03em",
-            color: "rgba(10,15,28,0.4)",
+            color: "rgba(var(--ink-rgb),0.7)",
           }}
         >
           {note ?? t("note")}
