@@ -6,14 +6,19 @@ import { getTranslations } from "next-intl/server";
 import PortableTextRenderer from "@/components/content/portable-text";
 import type { PortableTextBlock } from "@portabletext/types";
 import { sanityFetch } from "@/lib/sanity/client";
-import { getServerLocale } from "@/lib/i18n-server";
+import { initLocale } from "@/lib/i18n-server";
 import { localizedPath } from "@/lib/i18n";
 import { eventBySlugQuery } from "@/lib/sanity/queries";
 import { buildMetadata } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
-type PageProps = { params: Promise<{ slug: string }> };
+// Aucune page pré-générée : chaque article est généré à la première visite puis mis en cache.
+export function generateStaticParams() {
+  return [];
+}
+
+type PageProps = { params: Promise<{ locale: string; slug: string }> };
 
 type EventDetail = {
   _id: string;
@@ -31,7 +36,7 @@ type EventDetail = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const locale = await getServerLocale();
+  const locale = await initLocale(params);
   const event = await sanityFetch<EventDetail | null>(
     eventBySlugQuery,
     { slug, locale },
@@ -56,7 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const locale = await getServerLocale();
+  const locale = await initLocale(params);
   const t = await getTranslations({ locale, namespace: "common" });
   const event = await sanityFetch<EventDetail | null>(
     eventBySlugQuery,

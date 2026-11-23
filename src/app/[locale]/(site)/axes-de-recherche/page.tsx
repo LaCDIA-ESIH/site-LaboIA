@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation";
 import Highlights from "@/components/home/highlights";
 import { ProjectCard } from "@/components/cards/cards";
 import { sanityFetch } from "@/lib/sanity/client";
-import { getServerLocale } from "@/lib/i18n-server";
+import { initLocale, type LocaleParams } from "@/lib/i18n-server";
 import { pick } from "@/lib/i18n-pick";
 import { localizedPath } from "@/lib/i18n";
 import { projectListQuery } from "@/lib/sanity/queries";
@@ -14,7 +14,8 @@ import { getSolutionsPageData } from "@/lib/cms";
 
 import { isRemovedNavHref } from "@/lib/nav";
 
-export const dynamic = "force-dynamic";
+// Rendu mis en cache et rafraîchi toutes les 60 s : les modifications du CMS apparaissent en une minute.
+export const revalidate = 60;
 
 // Libellés des pastilles de solutions (la donnée CMS n'est qu'une clé d'icône).
 const ICON_LABELS: Record<string, { fr: string; en: string; ht: string }> = {
@@ -26,8 +27,8 @@ const ICON_LABELS: Record<string, { fr: string; en: string; ht: string }> = {
   document: { fr: "Documents", en: "Documents", ht: "Dokiman" },
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getServerLocale();
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const locale = await initLocale(params);
   const page = await getSolutionsPageData(locale);
 
   return await buildMetadata({
@@ -44,8 +45,8 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default async function SolutionsPage() {
-  const locale = await getServerLocale();
+export default async function SolutionsPage({ params }: LocaleParams) {
+  const locale = await initLocale(params);
   const [projects, solutionsPage] = await Promise.all([
     sanityFetch<ProjectListItem[]>(projectListQuery, { locale }, []),
     getSolutionsPageData(locale),
