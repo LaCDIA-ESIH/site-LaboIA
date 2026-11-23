@@ -84,6 +84,8 @@ export async function buildMetadata({
 
   if (Object.values(resolvedAlternates).some(Boolean)) {
     metadata.alternates = {
+      // URL canonique : la page elle-même (jamais une autre langue), ou celle saisie dans le CMS.
+      canonical: seo?.canonicalUrl ?? resolvedAlternates[locale] ?? path,
       languages: {
         ...Object.fromEntries(
           locales.flatMap((l) => (resolvedAlternates[l] ? [[l, resolvedAlternates[l] as string]] : [])),

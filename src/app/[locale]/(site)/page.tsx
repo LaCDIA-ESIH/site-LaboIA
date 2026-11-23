@@ -9,14 +9,15 @@ import ActualitesSection from "@/components/home/actualites-section";
 import Partners from "@/components/home/partners";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
-import { getServerLocale } from "@/lib/i18n-server";
+import { initLocale, type LocaleParams } from "@/lib/i18n-server";
 import { localizedPath } from "@/lib/i18n";
 import { getHomeData, getSiteSettings } from "@/lib/cms";
 
-export const dynamic = "force-dynamic";
+// Rendu mis en cache et rafraîchi toutes les 60 s : les modifications du CMS apparaissent en une minute.
+export const revalidate = 60;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getServerLocale();
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const locale = await initLocale(params);
   return await buildMetadata({
     locale,
     path: localizedPath("/", locale),
@@ -28,8 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default async function Home() {
-  const locale = await getServerLocale();
+export default async function Home({ params }: LocaleParams) {
+  const locale = await initLocale(params);
   const [, homeData] = await Promise.all([getSiteSettings(locale), getHomeData(locale)]);
   const { home, kpis, kpiSettings, allNews, featuredPartners } = homeData;
 

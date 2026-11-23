@@ -6,15 +6,21 @@ import { notFound } from "next/navigation";
 import PortableTextRenderer from "@/components/content/portable-text";
 import type { PortableTextBlock } from "@portabletext/types";
 import { sanityFetch } from "@/lib/sanity/client";
-import { getServerLocale } from "@/lib/i18n-server";
+import { initLocale } from "@/lib/i18n-server";
 import { localizedPath } from "@/lib/i18n";
 import { newsBySlugQuery } from "@/lib/sanity/queries";
 import { buildMetadata } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
+// Aucune page pré-générée : chaque article est généré à la première visite puis mis en cache.
+export function generateStaticParams() {
+  return [];
+}
 
 type PageProps = {
   params: Promise<{
+    locale: string;
     slug: string;
   }>;
 };
@@ -37,7 +43,7 @@ type NewsDetail = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const locale = await getServerLocale();
+  const locale = await initLocale(params);
   const article = await sanityFetch<NewsDetail | null>(
     newsBySlugQuery,
     { slug, locale },
@@ -62,7 +68,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const locale = await getServerLocale();
+  const locale = await initLocale(params);
   const article = await sanityFetch<NewsDetail | null>(
     newsBySlugQuery,
     { slug, locale },
