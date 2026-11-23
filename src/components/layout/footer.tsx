@@ -13,6 +13,7 @@ import { localLogoFor } from "@/lib/partner-logos";
 import type { PartnerListItem } from "@/lib/sanity/types";
 
 const CONTACT_EMAIL = "contact.lacdia@esih.edu";
+const FOUNDING_YEAR = 2025;
 
 const heading = "mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[#f3efe4]/55";
 const link = "text-sm text-[#f3efe4]/80 transition-colors hover:text-white";
@@ -32,7 +33,8 @@ export default async function Footer({
   const partners = (await sanityFetch<PartnerListItem[]>(partnerListQuery, { locale }, []))
     .map((p) => ({ name: p.name, website: p.website, logo: p.logo?.url ?? localLogoFor(p.name) }))
     .filter((p) => Boolean(p.logo));
-  const year = new Date().getFullYear();
+  // Année de fondation du laboratoire (et non l'année en cours), comme dans les données structurées du layout.
+  const year = FOUNDING_YEAR;
   const shortName = site.shortName ?? "LaCDIA";
   const copyrightText = (site.footerCopyrightText ?? `© {year} {shortName}. ${t("copyright")}`)
     .replace("{year}", String(year))
