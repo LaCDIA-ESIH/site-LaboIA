@@ -71,6 +71,24 @@ function collapseLocalized<T>(value: T, locale: string): T {
   return value;
 }
 
+/**
+ * Une coupure réseau passagère (build ou revalidation) ne doit pas faire échouer
+ * la page : jusqu'à 3 tentatives avec une courte attente, puis l'erreur d'origine.
+ */
+async function fetchWithRetry<T>(query: string, params: Record<string, unknown>): Promise<T> {
+  const attempts = 3;
+  let lastError: unknown;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await sanityClient!.fetch<T>(query, params);
+    } catch (error) {
+      lastError = error;
+      if (i < attempts - 1) await new Promise((resolve) => setTimeout(resolve, 400 * (i + 1)));
+    }
+  }
+  throw lastError;
+}
+
 export async function sanityFetch<T>(
   query: string,
   params: Record<string, unknown>,
@@ -78,7 +96,7 @@ export async function sanityFetch<T>(
 ) {
   if (!isSanityConfigured) return fallback;
   if (!sanityClient) return fallback;
-  const result = await sanityClient.fetch<T>(query, params);
+  const result = await fetchWithRetry<T>(query, params);
   if (params.locale === "ht") return collapseLocalized(result, "ht");
   if (params.locale === "en") return overlayEn(result);
   return result;

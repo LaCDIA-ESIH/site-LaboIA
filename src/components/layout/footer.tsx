@@ -79,6 +79,10 @@ export default async function Footer({
                       <img
                         src={p.logo as string}
                         alt={p.name}
+                        width={128}
+                        height={56}
+                        loading="lazy"
+                        decoding="async"
                         className="h-14 w-auto max-w-[8rem] object-contain"
                       />
                     );

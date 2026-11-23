@@ -94,7 +94,7 @@ export default function Header({
 
         <div className="mx-auto flex w-full max-w-[120rem] items-center justify-between gap-6 px-[clamp(1rem,6vw,6rem)] py-2.5 sm:py-3">
           {/* Logo */}
-          <Link href="/" className="group flex min-w-0 items-center gap-5" aria-label={site.name ?? "LaCDIA"}>
+          <Link href="/" className="group flex min-w-0 items-center gap-5" aria-label={site.name ? `LaCDIA — ${site.name}` : "LaCDIA"}>
             <LaCDIAWordmark size="md" />
             <span
               aria-hidden="true"

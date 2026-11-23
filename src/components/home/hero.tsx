@@ -76,6 +76,7 @@ export default async function Hero({
             width={298}
             height={240}
             priority
+            sizes="128px"
             className="hero-id-mark"
           />
           <p className="hero-id-card-label">{t("nameLabel")}</p>

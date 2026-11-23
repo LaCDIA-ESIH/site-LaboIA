@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import type { CSSProperties } from "react";
 
 /* ─── SVG icons (inline, zero deps) ───────────────────────── */
 function IconBrain({ size = 24, color = "currentColor" }: { size?: number; color?: string }) {
@@ -152,13 +151,7 @@ function AxeCard({
       }} />
 
       {/* Ghost number */}
-      <span aria-hidden="true" style={{
-        position: "absolute", bottom: "-0.5rem", right: "1.5rem",
-        fontFamily: "var(--font-display)", fontSize: "8rem", fontWeight: 600,
-        lineHeight: 1, color, opacity: 0.04, userSelect: "none", pointerEvents: "none",
-      }}>
-        {num}
-      </span>
+      <span aria-hidden="true" className="ghost-num" data-num={num} style={{ color }} />
 
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
@@ -173,7 +166,7 @@ function AxeCard({
         </div>
         <span style={{
           fontFamily: "var(--font-mono)", fontSize: "0.62rem", letterSpacing: "0.18em",
-          color, opacity: 0.9, fontWeight: 700,
+          color, fontWeight: 700,
           background: bg, border: "1px solid " + border,
           padding: "0.3rem 0.7rem", borderRadius: 999,
         }}>
@@ -212,7 +205,7 @@ function AxeCard({
       <div>
         <p style={{
           fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.14em",
-          textTransform: "uppercase", color, opacity: 0.75, marginBottom: "0.5rem", fontWeight: 700,
+          textTransform: "uppercase", color, marginBottom: "0.5rem", fontWeight: 700,
         }}>
           {objectivesLabel}
         </p>
@@ -293,7 +286,7 @@ function PoleCard({
         <div>
           <p style={{
             fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.14em",
-            textTransform: "uppercase", color: gold, opacity: 0.75, marginBottom: "0.6rem", fontWeight: 700,
+            textTransform: "uppercase", color: gold, marginBottom: "0.6rem", fontWeight: 700,
           }}>
             {sectorsLabel}
           </p>
@@ -328,7 +321,7 @@ function FlowConnector({ label, text }: { label: string; text: string }) {
         <div style={{
           display: "flex", alignItems: "center", gap: "0.5rem",
           fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.14em",
-          textTransform: "uppercase", color: "var(--labo-accent-teal)", opacity: 0.7,
+          textTransform: "uppercase", color: "var(--labo-accent-teal)",
         }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M12 5v14M5 12l7 7 7-7" stroke="var(--haiti-blue)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />

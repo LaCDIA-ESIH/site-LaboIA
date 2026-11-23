@@ -28,6 +28,7 @@ export function LaCDIAWordmark({
         alt=""
         width={Math.round(px * 1.24)}
         height={px}
+        sizes={`${Math.round(px * 1.24)}px`}
         priority
         style={{ height: px, width: "auto" }}
       />

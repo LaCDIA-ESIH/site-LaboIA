@@ -227,7 +227,7 @@ export default function GovernanceEthics({ locale = "fr" }: GovernanceProps) {
                   </p>
                   <p style={{
                     fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.1em",
-                    color: organ.color, margin: 0, opacity: 0.8,
+                    color: organ.color, margin: 0,
                   }}>
                     {pick(locale, { fr: organ.titleFr, en: organ.titleEn, ht: organ.titleHt })}
                   </p>

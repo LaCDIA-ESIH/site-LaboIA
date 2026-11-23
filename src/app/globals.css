@@ -1306,7 +1306,7 @@ body {
   gap: 6px;
   font-size: 0.8rem;
   font-weight: 500;
-  color: rgba(var(--ink-rgb), 0.6);
+  color: rgba(var(--ink-rgb), 0.75);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -2374,7 +2374,7 @@ body {
   text-transform: uppercase;
   background: rgba(143, 168, 255, 0.1);
   border: 1px solid rgba(143, 168, 255, 0.2);
-  color: var(--color-teal);
+  color: var(--haiti-blue);
 }
 
 .badge-news {
@@ -2482,7 +2482,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--color-teal);
+  color: var(--haiti-blue);
   font-weight: 600;
   font-size: 0.875rem;
   text-decoration: none;
@@ -2628,7 +2628,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.75rem;
-  color: var(--color-text-muted, #94a3b8);
+  color: rgba(var(--ink-rgb), 0.72);
 }
 
 .simple-card-title {
@@ -2653,7 +2653,7 @@ body {
 .empty-state {
   padding: 3rem 2rem;
   text-align: center;
-  color: var(--color-text-muted, #94a3b8);
+  color: rgba(var(--ink-rgb), 0.72);
   font-size: 0.9rem;
   border: 1px dashed rgba(0, 0, 0, 0.12);
   border-radius: var(--radius-lg);
@@ -2764,7 +2764,8 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(2rem, 5vw, 5rem);
-  align-items: center;
+  /* `start` : la carte ne bouge pas quand le titre change de hauteur au chargement de la police. */
+  align-items: start;
 }
 .hero-id-kicker {
   display: flex;
@@ -2903,7 +2904,8 @@ img, svg, video { max-width: 100%; }
   position: absolute;
   z-index: 0;
   left: 50%;
-  top: 50%;
+  /* position fixe (≈ milieu de la carte) : le motif ne bouge pas quand la carte change de hauteur au chargement de la police */
+  top: 16rem;
   width: 160%;
   max-width: none;
   height: auto;
@@ -2911,10 +2913,20 @@ img, svg, video { max-width: 100%; }
   opacity: 0.75;
   pointer-events: none;
 }
+/* Grand chiffre décoratif en filigrane : en pseudo-élément (pas du texte lu ni analysé). */
+.ghost-num { position: absolute; bottom: -0.5rem; right: 1.5rem; pointer-events: none; user-select: none; }
+.ghost-num::before {
+  content: attr(data-num);
+  font-family: var(--font-display); font-size: 8rem; font-weight: 600; line-height: 1;
+  color: currentColor; opacity: 0.04;
+}
 .spiral-motif-path { stroke-dasharray: 1; stroke-dashoffset: 0; }
 @media (prefers-reduced-motion: no-preference) {
-  .spiral-motif-path { animation: spiral-draw 2.4s ease-out both; }
+  .spiral-motif-path { animation: spiral-draw 1.2s ease-out both; }
   @keyframes spiral-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  /* Rotation très lente (~8 min par tour), composée par le GPU : aucun JavaScript au repos. */
+  .spiral-motif { animation: spiral-spin 520s linear infinite; will-change: rotate; }
+  @keyframes spiral-spin { to { rotate: 360deg; } }
 }
 @media (max-width: 900px) {
   .hero-id-motif { width: 130%; opacity: 0.5; }
